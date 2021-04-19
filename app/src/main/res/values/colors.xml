@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--        App Colors             -->
+    <color name="backcolor_orange_dark">#EF9B42</color>
+    <color name="backcolor_orange_light">#F4D05C</color>
+    <color name="backcolor_grey_dark">#8F8F8F</color>
+    <color name="backcolor_grey_light">#EEE7E0</color>
+    <color name="white_blue">#F7F8F9</color>
+    <color name="font_color">#425969</color>
+    <color name="green">#4DBAA2</color>
+    <color name="orange">#F9C359</color>
 </resources>
