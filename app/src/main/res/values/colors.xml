@@ -14,7 +14,7 @@
     <color name="backcolor_grey_dark">#8F8F8F</color>
     <color name="backcolor_grey_light">#EEE7E0</color>
     <color name="white_blue">#F7F8F9</color>
-    <color name="font_color">#425969</color>
+    <color name="text_color">#425969</color>
     <color name="green">#4DBAA2</color>
     <color name="orange">#F9C359</color>
 </resources>

@@ -8,11 +8,11 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/txt_login"
+        android:id="@+id/txt_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/cooper_black_regular"
-        android:text="@string/login"
+        android:text="@string/student"
         android:textSize="50sp"
         android:textColor="@color/text_color"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
@@ -33,7 +33,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_login" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_student" />
 
     <EditText
         android:gravity="center"
@@ -46,10 +46,26 @@
         android:textColor="@color/text_color"
         android:textColorHint="@color/text_color"
         android:hint="@string/passphrase"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_username" />
+
+    <EditText
+        android:gravity="center"
+        android:id="@+id/et_classid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/cooper_black_regular"
+        android:textColor="@color/text_color"
+        android:textColorHint="@color/text_color"
+        android:hint="@string/classid"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_passphrase" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -64,10 +80,10 @@
         android:layout_height="150dp"
         android:background="@drawable/circle_button"
         android:fontFamily="@font/cooper_black_regular"
-        android:text="@string/login"
+        android:text="@string/signup"
         android:textAlignment="center"
         android:textColor="@color/orange"
-        android:textSize="50sp"
+        android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -79,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/cooper_black_regular"
-        android:text="@string/create_account"
+        android:text="@string/have_account"
         android:textColor="@color/text_color"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

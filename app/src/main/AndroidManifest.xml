@@ -9,7 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiplicationLearning">
-        <activity android:name=".MainActivity" android:screenOrientation="landscape">
+        <activity android:name=".SignUpStudentActivity"></activity>
+        <activity android:name=".SignUpTeacherActivity" />
+        <activity
+            android:name=".CreateAccountActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

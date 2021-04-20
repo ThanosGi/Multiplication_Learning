@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Multiplication Learning</string>
+    <string name="username">Username</string>
+    <string name="login">Log In</string>
+    <string name="signup">Sign Up</string>
+    <string name="passphrase">Passphrase</string>
+    <string name="password">Password</string>
+    <string name="classid">Class ID</string>
+    <string name="teacher">As Teacher</string>
+    <string name="student">As Student</string>
+    <string name="email">E-mail</string>
+    <string name="create_account">Create an account?</string>
+    <string name="create_student">Are you a Student?</string>
+    <string name="create_teacher">Are you a Teacher?</string>
+    <string name="have_account">Have already an account?</string>
 </resources>
