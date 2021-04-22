@@ -1,24 +1,18 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends FullScreen {
+public class LogInActivity extends FullScreen {
     private FirebaseAuth mAuth;
     TextView txtCreateAccount;
     EditText username;
@@ -36,7 +30,7 @@ public class MainActivity extends FullScreen {
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
         username=findViewById(R.id.et_username);
@@ -44,7 +38,7 @@ public class MainActivity extends FullScreen {
 
         txtCreateAccount = findViewById(R.id.txt_create_account);
         txtCreateAccount.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, CreateAccountActivity.class);
+            Intent intent = new Intent(LogInActivity.this, CreateAccountActivity.class);
             startActivity(intent);
         });
     }

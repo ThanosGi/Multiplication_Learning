@@ -49,7 +49,7 @@ public class SignUpStudentActivity extends FullScreen {
         }
     }
 
-    public void sign_up(View view){
+    public void sign_up_students(View view){
         try{
             mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
                     .addOnCompleteListener(this, task -> {

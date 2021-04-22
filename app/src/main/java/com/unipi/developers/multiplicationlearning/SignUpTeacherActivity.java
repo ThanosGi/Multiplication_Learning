@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,7 +50,7 @@ public class SignUpTeacherActivity extends FullScreen {
         }
     }
 
-    public void sign_up(View view){
+    public void sign_up_teacher(View view){
         try{
             if(password.getText().toString().equals(password2.getText().toString())){
                 mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())

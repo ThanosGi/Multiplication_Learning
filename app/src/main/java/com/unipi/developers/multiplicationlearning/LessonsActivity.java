@@ -29,7 +29,7 @@ public class LessonsActivity extends FullScreen {
 
         if(account == null) {
             Toast.makeText(this, getString(R.string.log_out), Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, LogInActivity.class));
         }
     }
 }
