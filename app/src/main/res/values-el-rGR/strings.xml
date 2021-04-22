@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Μαθήματα Πολλαπλασιασμού</string>
+    <string name="have_account">Έχετε ήδη λογαριασμό;</string>
+    <string name="email">E-mail</string>
+    <string name="create_account">Θέλετε να δημιουργήσετε λογαριασμό;</string>
+    <string name="classid">Κωδικός Τάξης</string>
+    <string name="teacher">Ως καθηγητής</string>
+    <string name="student">Ως Μαθητής</string>
+    <string name="create_teacher">Είστε καθηγητής;</string>
+    <string name="create_student">Είσαι μαθητής;</string>
+    <string name="login">Σύνδεση</string>
+    <string name="password">Κωδικός</string>
+    <string name="signup">Εγγραφή</string>
+    <string name="username">Όνομα χρήστη</string>
+    <string name="passphrase">Συνθηματικό</string>
+    <string name="auth_fail">Η ταυτοποίηση απέτυχε</string>
+    <string name="empty_error">Πρώτα δώστε μου το e-mail/όνομα χρήστη και κωδικό/συνθηματικό</string>
+    <string name="success_sign_in">Συνδεθήκατε επιτυχώς</string>
+    <string name="pass_not_match">Οι κωδικοί δεν ταυτίζονται</string>
+    <string name="log_out">Δεν βρέθηκε λογαριασμός</string>
+    <string name="help">Βοήθεια</string>
+</resources>

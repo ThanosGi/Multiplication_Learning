@@ -13,4 +13,10 @@
     <string name="create_student">Are you a Student?</string>
     <string name="create_teacher">Are you a Teacher?</string>
     <string name="have_account">Have already an account?</string>
+    <string name="auth_fail">Authentication failed</string>
+    <string name="empty_error">Give e-mail/username and password/passphrase first</string>
+    <string name="success_sign_in">Signed In successfully</string>
+    <string name="pass_not_match">Your password does not match</string>
+    <string name="log_out">No account found</string>
+    <string name="help">Help</string>
 </resources>

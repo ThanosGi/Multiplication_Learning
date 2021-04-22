@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1065192622682",
+    "project_id": "multiplication-learning",
+    "storage_bucket": "multiplication-learning.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065192622682:android:ce1345446f063b9ac9a663",
+        "android_client_info": {
+          "package_name": "com.unipi.developers.multiplicationlearning"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065192622682-jq5im9h983ep9kr7oo079e56c86952k8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL7SLl6l8cTptF63wxeQ6VwTj5zmuT-EU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065192622682-jq5im9h983ep9kr7oo079e56c86952k8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
