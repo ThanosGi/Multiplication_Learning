@@ -59,7 +59,7 @@ public class SignUpStudentActivity extends FullScreen {
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(getApplicationContext(), getString(R.string.auth_fail), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 

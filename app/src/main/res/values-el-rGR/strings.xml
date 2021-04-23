@@ -19,5 +19,21 @@
     <string name="success_sign_in">Συνδεθήκατε επιτυχώς</string>
     <string name="pass_not_match">Οι κωδικοί δεν ταυτίζονται</string>
     <string name="log_out">Δεν βρέθηκε λογαριασμός</string>
+    <string name="select_subject">Select Subject</string>
+    <string name="number_zero">Αριθμός 0</string>
+    <string name="number_one">Αριθμός 1</string>
+    <string name="number_two">Αριθμός 2</string>
+    <string name="number_three">Αριθμός 3</string>
+    <string name="number_four">Αριθμός 4</string>
+    <string name="number_five">Αριθμός 5</string>
+    <string name="number_six">Αριθμός 6</string>
+    <string name="number_seven">Αριθμός 7</string>
+    <string name="number_eight">Αριθμός 8</string>
+    <string name="number_nine">Αριθμός 9</string>
+    <string name="score">Βαθμός:</string>
+    <string name="review1">Τεστ 1</string>
+    <string name="review2">Τεστ 2</string>
+    <string name="review3">Τεστ 3</string>
+    <string name="final_review">Τελικό Τεστ</string>
     <string name="help">Βοήθεια</string>
 </resources>

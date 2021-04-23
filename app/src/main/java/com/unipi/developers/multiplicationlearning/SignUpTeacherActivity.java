@@ -24,14 +24,6 @@ public class SignUpTeacherActivity extends FullScreen {
     EditText password2;
 
     @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
@@ -61,7 +53,7 @@ public class SignUpTeacherActivity extends FullScreen {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(getApplicationContext(), getString(R.string.auth_fail), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
