@@ -21,7 +21,7 @@
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/cooper_black_regular"/>
+        android:fontFamily="@font/riffic"/>
 
     <ScrollView
         android:layout_weight="9"
@@ -66,7 +66,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_zero"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -75,7 +75,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -84,7 +84,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -95,7 +95,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -143,7 +143,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_one"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -152,7 +152,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -161,7 +161,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -172,7 +172,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -220,7 +220,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_two"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -229,7 +229,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -238,7 +238,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -249,7 +249,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -297,7 +297,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/review1"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -306,7 +306,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -315,7 +315,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -326,7 +326,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -378,7 +378,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_three"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -387,7 +387,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -396,7 +396,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -407,7 +407,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -455,7 +455,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_four"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -464,7 +464,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -473,7 +473,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -484,7 +484,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -532,7 +532,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_five"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -541,7 +541,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -550,7 +550,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -561,7 +561,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -609,7 +609,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/review2"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -618,7 +618,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -627,7 +627,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -638,7 +638,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -690,7 +690,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_six"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -699,7 +699,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -708,7 +708,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -719,7 +719,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -767,7 +767,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_seven"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -776,7 +776,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -785,7 +785,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -796,7 +796,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -844,7 +844,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_eight"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -853,7 +853,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -862,7 +862,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -873,7 +873,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -921,7 +921,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/review3"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -930,7 +930,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -939,7 +939,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -950,7 +950,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -1003,7 +1003,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/number_nine"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -1012,7 +1012,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -1021,7 +1021,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -1032,7 +1032,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -1080,7 +1080,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/final_review"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="24sp"
                             android:textColor="@color/green"/>
 
@@ -1089,7 +1089,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/score"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:textSize="16sp"
                             android:textColor="@color/text_color"/>
 
@@ -1098,7 +1098,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="100%"
                             android:textColor="@color/green"
                             android:textSize="24sp"
@@ -1109,7 +1109,7 @@
                             android:gravity="center_horizontal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/cooper_black_regular"
+                            android:fontFamily="@font/riffic"
                             android:text="Excellent [A]"
                             android:textColor="@color/green"
                             android:textSize="24sp"
