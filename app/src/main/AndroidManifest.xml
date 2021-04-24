@@ -9,9 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiplicationLearning">
-        <activity android:name=".LessonsActivity" android:screenOrientation="landscape" />
-        <activity android:name=".SignUpStudentActivity" android:screenOrientation="landscape" />
-        <activity android:name=".SignUpTeacherActivity" android:screenOrientation="landscape" />
+        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".TeacherActivity" />
+        <activity android:name=".MiniTestActivity" />
+        <activity
+            android:name=".LessonsActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".SignUpStudentActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".SignUpTeacherActivity"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".CreateAccountActivity"
             android:screenOrientation="landscape" />

@@ -35,4 +35,9 @@
     <string name="review3">Review 3</string>
     <string name="final_review">Final Review</string>
     <string name="help">Help</string>
+    <string name="hello_teacher_name">Hello</string>
+    <string name="my_classes">My Classes</string>
+    <string name="create_class">Create Class</string>
+    <string name="student_stats">Student Stats</string>
+    <string name="create_students">Create Student</string>
 </resources>
