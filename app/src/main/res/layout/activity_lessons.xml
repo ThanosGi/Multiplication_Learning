@@ -340,8 +340,8 @@
                         android:layout_marginBottom="20dp"
                         android:layout_marginEnd="20dp"
                         android:id="@+id/img_review1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/ic_test"/>
 
                 </LinearLayout>
@@ -652,8 +652,8 @@
                         android:layout_marginBottom="20dp"
                         android:layout_marginEnd="20dp"
                         android:id="@+id/img_review2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/ic_test"/>
 
                 </LinearLayout>
@@ -965,8 +965,8 @@
                         android:layout_marginBottom="20dp"
                         android:layout_marginEnd="20dp"
                         android:id="@+id/img_review3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/ic_test"/>
 
                 </LinearLayout>
@@ -1123,8 +1123,8 @@
                         android:layout_marginBottom="20dp"
                         android:layout_marginEnd="20dp"
                         android:id="@+id/img_final_review"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/ic_test"/>
 
                 </LinearLayout>
