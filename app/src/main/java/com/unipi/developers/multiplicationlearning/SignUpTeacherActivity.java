@@ -1,27 +1,34 @@
 package com.unipi.developers.multiplicationlearning;
 
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 
 public class SignUpTeacherActivity extends FullScreen {
     private FirebaseAuth mAuth;
     EditText email;
     EditText password;
     EditText password2;
+    Context context=this;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class SignUpTeacherActivity extends FullScreen {
                                 updateUI(user);
                             } else {
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(getApplicationContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -68,8 +75,20 @@ public class SignUpTeacherActivity extends FullScreen {
     private void updateUI(FirebaseUser account){
 
         if(account != null) {
-            Toast.makeText(this, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, LessonsActivity.class));
+
+            // Create a new user with a first, middle, and last name
+            Map<String, Object> user = new HashMap<>();
+            user.put("email", email.getText().toString());
+            user.put("classId", "none");
+
+            // Add a new document with a generated ID
+            db.collection("teachers")
+                    .document(account.getUid())
+                    .set(user)
+                    .addOnSuccessListener(aVoid -> {
+                        Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(context, TeacherActivity.class));                        })
+                    .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }
     }
 }

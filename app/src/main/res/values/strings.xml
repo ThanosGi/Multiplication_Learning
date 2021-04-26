@@ -40,4 +40,5 @@
     <string name="create_class">Create Class</string>
     <string name="student_stats">Student Stats</string>
     <string name="create_students">Create Student</string>
+    <string name="logout_success">You have successfully logged out</string>
 </resources>

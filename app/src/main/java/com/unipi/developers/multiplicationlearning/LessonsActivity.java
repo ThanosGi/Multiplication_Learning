@@ -3,6 +3,9 @@ package com.unipi.developers.multiplicationlearning;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -12,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LessonsActivity extends FullScreen {
     private FirebaseAuth mAuth;
-
+    ImageView help;
     @Override
     public void onStart() {
         super.onStart();
@@ -36,6 +39,8 @@ public class LessonsActivity extends FullScreen {
         setContentView(R.layout.activity_lessons);
 
         mAuth = FirebaseAuth.getInstance();
+        help=findViewById(R.id.btn_help);
+        help.setOnClickListener(this::logout);
     }
 
     private void updateUI(FirebaseUser account){
@@ -44,5 +49,11 @@ public class LessonsActivity extends FullScreen {
             Toast.makeText(this, getString(R.string.log_out), Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, LogInActivity.class));
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

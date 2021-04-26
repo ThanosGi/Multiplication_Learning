@@ -41,4 +41,5 @@
     <string name="create_class">Δημιουργία Τάξης</string>
     <string name="student_stats">Στατιστικά Μαθητών</string>
     <string name="create_students">Δημιουργία Μαθητή</string>
+    <string name="logout_success">Αποσυνδεθήκατε με επιτυχία</string>
 </resources>
