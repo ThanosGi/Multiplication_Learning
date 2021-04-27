@@ -16,7 +16,8 @@
     <string name="passphrase">Συνθηματικό</string>
     <string name="auth_fail">Η ταυτοποίηση απέτυχε</string>
     <string name="empty_error">Πρώτα δώστε μου το e-mail/όνομα χρήστη και κωδικό/συνθηματικό</string>
-    <string name="success_sign_in">Συνδεθήκατε επιτυχώς</string>
+    <string name="success_sign_in">Συνδεθήκατε επιτυχώς!</string>
+    <string name="success_student">Ο μαθητής δημιουργήθηκε επιτυχώς!</string>
     <string name="pass_not_match">Οι κωδικοί δεν ταυτίζονται</string>
     <string name="log_out">Δεν βρέθηκε λογαριασμός</string>
     <string name="select_subject">Select Subject</string>

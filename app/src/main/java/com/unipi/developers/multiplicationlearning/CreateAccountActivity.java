@@ -25,7 +25,9 @@ public class CreateAccountActivity extends FullScreen {
     }
 
     public void dog_button(View view){
-        startActivity(new Intent(getApplicationContext(), SignUpStudentActivity.class));
+        Intent intent = new Intent(CreateAccountActivity.this, SignUpStudentActivity.class);
+        intent.putExtra("from","CreateAccountActivity");
+        startActivity(intent);
     }
 
     public void cat_button(View view){

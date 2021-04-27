@@ -15,7 +15,8 @@
     <string name="have_account">Have already an account?</string>
     <string name="auth_fail">Authentication failed</string>
     <string name="empty_error">Give e-mail/username and password/passphrase first</string>
-    <string name="success_sign_in">Signed In successfully</string>
+    <string name="success_sign_in">Signed In successfully!</string>
+    <string name="success_student">Student signed up successfully!</string>
     <string name="pass_not_match">Your password does not match</string>
     <string name="log_out">No account found</string>
     <string name="select_subject">Select Subject</string>

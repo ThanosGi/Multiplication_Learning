@@ -82,9 +82,14 @@ public class SignUpStudentActivity extends FullScreen {
                     .document(account.getUid())
                     .set(user)
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(context, TeacherActivity.class));                        })
-                    .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
+                        String from = getIntent().getStringExtra("from");
+                        if(from.equals("CreateAccountActivity")){
+                            Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(context, TheoryActivity.class));
+                        }else{
+                            Toast.makeText(context, getString(R.string.success_student), Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(context, TeacherActivity.class));}
+                    }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }
     }
 }

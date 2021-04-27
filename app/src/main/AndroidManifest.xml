@@ -9,11 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiplicationLearning">
-        <activity android:name=".CreateClassActivity"></activity>
-        <activity android:name=".TheoryActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".TeacherActivity" />
-        <activity android:name=".MiniTestActivity" />
+        <activity
+            android:name=".CreateClassActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".TheoryActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".TestActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".TeacherActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".MiniTestActivity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".LessonsActivity"
             android:screenOrientation="landscape" />
