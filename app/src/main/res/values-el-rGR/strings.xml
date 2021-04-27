@@ -42,4 +42,9 @@
     <string name="student_stats">Στατιστικά Μαθητών</string>
     <string name="create_students">Δημιουργία Μαθητή</string>
     <string name="logout_success">Αποσυνδεθήκατε με επιτυχία</string>
+    <string name="class_name">Όνομα Τάξης</string>
+    <string name="class_id">Αριθμός Τάξης</string>
+    <string name="create">Προσθήκη</string>
+    <string name="create_your_class">Δημιουργήστε τη Τάξη σας</string>
+    <string name="number5">Αριθμός 5</string>
 </resources>

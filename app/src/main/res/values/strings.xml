@@ -41,4 +41,9 @@
     <string name="student_stats">Student Stats</string>
     <string name="create_students">Create Student</string>
     <string name="logout_success">You have successfully logged out</string>
+    <string name="class_name">Class Name</string>
+    <string name="class_id">Class ID</string>
+    <string name="create">Create</string>
+    <string name="create_your_class">Create your Class</string>
+    <string name="number5">Number 5</string>
 </resources>
