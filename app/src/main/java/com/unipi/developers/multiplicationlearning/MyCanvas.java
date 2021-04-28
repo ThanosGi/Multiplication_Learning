@@ -15,6 +15,7 @@ public class MyCanvas extends View {
 
     Paint paint;
     Path path;
+    int backgroundColor;
 
     public MyCanvas(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -31,6 +32,12 @@ public class MyCanvas extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawPath(path, paint);
+    }
+
+    public void clear(){
+        backgroundColor = Color.WHITE;
+        path = new Path();
+        invalidate();
     }
 
     @Override
