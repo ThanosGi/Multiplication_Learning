@@ -63,6 +63,42 @@ public class LessonsActivity extends FullScreen {
             }
         });
 
+        cardTest1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TestActivity.class);
+                intent.putExtra("from", "test1");
+                intent.putExtra("page", 1);
+                startActivity(intent);
+            }
+        });
+
+        cardTest2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TestActivity.class);
+                intent.putExtra("from", "test2");
+                startActivity(intent);
+            }
+        });
+
+        cardTest3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TestActivity.class);
+                intent.putExtra("from", "test3");
+                startActivity(intent);
+            }
+        });
+
+        cardFinalTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TestActivity.class);
+                intent.putExtra("from", "finalTest");
+                startActivity(intent);
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         help=findViewById(R.id.btn_help);

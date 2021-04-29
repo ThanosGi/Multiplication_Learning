@@ -31,8 +31,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/one"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -42,8 +45,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/two"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -53,8 +59,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/three"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -64,8 +73,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/four"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -75,8 +87,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/five"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -86,8 +101,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/six"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -97,8 +115,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/seven"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -108,8 +129,11 @@
                     android:layout_marginEnd="10dp">
 
                     <ImageView
+                        android:id="@+id/Page8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/eight"/>
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -118,8 +142,11 @@
                     android:layout_height="30dp">
 
                     <ImageView
+                        android:id="@+id/Page9"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleType="fitXY"
+                        android:adjustViewBounds="true"
                         android:src="@drawable/nine"/>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
@@ -129,27 +156,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_vertical"
+            android:weightSum="10">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_true1"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_check"
+                android:layout_marginStart="25dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_false1"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_cancel"
+                android:layout_marginEnd="25dp"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/five"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/mul"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/multiply" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/nine" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/equal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,7 +208,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                android:layout_marginEnd="50dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -167,11 +218,15 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:layout_weight="1"
+                        android:id="@+id/result1_num1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/four"/>
 
                     <ImageView
+                        android:layout_weight="1"
+                        android:id="@+id/result1_num2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/five"/>
@@ -183,27 +238,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_vertical"
+            android:weightSum="10">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_true2"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_check"
+                android:layout_marginStart="25dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_false2"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_cancel"
+                android:layout_marginEnd="25dp"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/three"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/mul2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/multiply" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/four" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/equal2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -212,7 +290,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                android:layout_marginEnd="50dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -221,11 +300,15 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/result2_num1"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/one"/>
 
                     <ImageView
+                        android:id="@+id/result2_num2"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/two"/>
@@ -237,27 +320,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center">
+            android:gravity="center_vertical"
+            android:weightSum="10">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_true3"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_check"
+                android:layout_marginStart="25dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_false3"
+                android:layout_weight="1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/backcolor_grey_dark"
+                android:foreground="@drawable/ic_cancel"
+                android:layout_marginEnd="25dp"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/seven"/>
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/mul3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/multiply" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/num6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/eight" />
 
             <ImageView
+                android:layout_weight="1"
                 android:id="@+id/equal3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -266,7 +372,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardElevation="0dp">
+                app:cardElevation="0dp"
+                android:layout_marginEnd="50dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -275,28 +382,31 @@
                     android:gravity="center_vertical">
 
                     <ImageView
+                        android:id="@+id/result3_num1"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/five"/>
 
                     <ImageView
+                        android:id="@+id/result3_num2"
+                        android:layout_weight="1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/six"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
-    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/next_button"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"/>
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/next_button"
+            android:layout_gravity="end"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="2dp"/>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/btn_help"
