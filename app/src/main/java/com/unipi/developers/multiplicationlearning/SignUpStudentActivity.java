@@ -1,6 +1,5 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
@@ -10,8 +9,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,7 +23,8 @@ public class SignUpStudentActivity extends FullScreen {
     EditText passphrase;
     EditText classid;
     Context context=this;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db_exists = FirebaseFirestore.getInstance();
+    FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -51,15 +49,14 @@ public class SignUpStudentActivity extends FullScreen {
 
     public void sign_up_students(View view){
         try{
-            mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
-                    .addOnCompleteListener(this, task -> {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+            db_exists.collection("classes")
+                .whereEqualTo(classid.getText().toString(), true)
+                .get()
+                    .addOnSuccessListener(found -> {
+                        if (found.getDocuments().isEmpty()){
+                            Toast.makeText(context,getString(R.string.class_does_not_exist),Toast.LENGTH_LONG).show();
+                        }else{
+                            create_account();
                         }
                     });
 
@@ -68,8 +65,20 @@ public class SignUpStudentActivity extends FullScreen {
         }
     }
 
+    private void create_account(){
+        mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     private void updateUI(FirebaseUser account){
-
         if(account != null) {
 
             // Create a new user with a first, middle, and last name
@@ -78,7 +87,7 @@ public class SignUpStudentActivity extends FullScreen {
             user.put("classId", classid.getText().toString());
 
             // Add a new document with a generated ID
-            db.collection("students")
+            db_auth.collection("students")
                     .document(account.getUid())
                     .set(user)
                     .addOnSuccessListener(aVoid -> {

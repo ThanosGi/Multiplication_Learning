@@ -15,7 +15,6 @@
     <string name="username">Όνομα χρήστη</string>
     <string name="passphrase">Συνθηματικό</string>
     <string name="auth_fail">Η ταυτοποίηση απέτυχε</string>
-    <string name="empty_error">Πρώτα δώστε μου το e-mail/όνομα χρήστη και κωδικό/συνθηματικό</string>
     <string name="success_sign_in">Συνδεθήκατε επιτυχώς!</string>
     <string name="success_student">Ο μαθητής δημιουργήθηκε επιτυχώς!</string>
     <string name="pass_not_match">Οι κωδικοί δεν ταυτίζονται</string>
@@ -49,4 +48,9 @@
     <string name="create_your_class">Δημιουργήστε τη Τάξη σας</string>
     <string name="number5">Αριθμός 5</string>
     <string name="see_video">Δείτε το βίντεο!</string>
+    <string name="class_exists">Αυτή η τάξη υπάρχει ήδη!</string>
+    <string name="class_success">Η τάξη δημιουργήθηκε με επιτυχία.</string>
+    <string name="class_failed">Η δημιουργία της τάξης απέτυχε.</string>
+    <string name="class_does_not_exist">Αυτή η τάξη δεν υπάρχει!</string>
+    <string name="empty_error">Τα πεδία είναι κενά</string>
 </resources>

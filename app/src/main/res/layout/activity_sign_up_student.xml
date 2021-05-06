@@ -15,7 +15,7 @@
         android:text="@string/student"
         android:textSize="50sp"
         android:textColor="@color/text_color"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintBottom_toTopOf="@+id/btn_createclass"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -52,17 +52,17 @@
         app:layout_constraintTop_toBottomOf="@+id/et_username" />
 
     <EditText
-        android:gravity="center"
         android:id="@+id/et_classid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="@font/riffic"
+        android:gravity="center"
+        android:hint="@string/classid"
+        android:inputType="number"
         android:textColor="@color/text_color"
         android:textColorHint="@color/text_color"
-        android:hint="@string/classid"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_passphrase" />
@@ -75,7 +75,7 @@
         app:layout_constraintGuide_percent="0.5"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_createclass"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:background="@drawable/circle_button"
@@ -101,7 +101,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_createclass" />
 
     <ImageView
         android:id="@+id/btn_help"

@@ -5,7 +5,6 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 
 public class TeacherActivity extends FullScreen {
@@ -24,22 +23,20 @@ public class TeacherActivity extends FullScreen {
         card_studentStats = findViewById(R.id.card_teacher_student_statistics);
         card_createStudent = findViewById(R.id.card_teacher_create_student);
 
-
-        card_createClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TeacherActivity.this, CreateClassActivity.class);
-                startActivity(intent);
-            }
+        card_myClasses.setOnClickListener(v -> {
+            Intent intent = new Intent(TeacherActivity.this, MyClassesActivity.class);
+            startActivity(intent);
         });
 
-        card_createStudent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TeacherActivity.this, SignUpStudentActivity.class);
-                intent.putExtra("from","TeacherActivity");
-                startActivity(intent);
-            }
+        card_createClass.setOnClickListener(v -> {
+            Intent intent = new Intent(TeacherActivity.this, CreateClassActivity.class);
+            startActivity(intent);
+        });
+
+        card_createStudent.setOnClickListener(v -> {
+            Intent intent = new Intent(TeacherActivity.this, SignUpStudentActivity.class);
+            intent.putExtra("from","TeacherActivity");
+            startActivity(intent);
         });
 
     }

@@ -39,7 +39,7 @@
             app:layout_constraintGuide_percent="0.5"/>
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/className"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -47,27 +47,27 @@
             android:hint="@string/class_name"
             android:inputType="textPersonName"
             android:textColor="@color/text_color"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
+            app:layout_constraintBottom_toTopOf="@+id/classID"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/classID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:fontFamily="@font/riffic"
             android:hint="@string/class_id"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:textColor="@color/text_color"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/className" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_login"
+            android:id="@+id/btn_createclass"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:background="@drawable/circle_button"

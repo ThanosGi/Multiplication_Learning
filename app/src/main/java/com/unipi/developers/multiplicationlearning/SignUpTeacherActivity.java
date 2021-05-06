@@ -26,6 +26,7 @@ public class SignUpTeacherActivity extends FullScreen {
     EditText email;
     EditText password;
     EditText password2;
+
     Context context=this;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -79,7 +80,7 @@ public class SignUpTeacherActivity extends FullScreen {
             // Create a new user with a first, middle, and last name
             Map<String, Object> user = new HashMap<>();
             user.put("email", email.getText().toString());
-            user.put("classId", "none");
+            user.put("0000", "Test Class");
 
             // Add a new document with a generated ID
             db.collection("teachers")
@@ -87,7 +88,8 @@ public class SignUpTeacherActivity extends FullScreen {
                     .set(user)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(context, TeacherActivity.class));                        })
+                        startActivity(new Intent(context, TeacherActivity.class));
+                    })
                     .addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }
     }

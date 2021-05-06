@@ -14,7 +14,7 @@
     <string name="create_teacher">Are you a Teacher?</string>
     <string name="have_account">Have already an account?</string>
     <string name="auth_fail">Authentication failed</string>
-    <string name="empty_error">Give e-mail/username and password/passphrase first</string>
+    <string name="empty_error">The fields are empty</string>
     <string name="success_sign_in">Signed In successfully!</string>
     <string name="success_student">Student signed up successfully!</string>
     <string name="pass_not_match">Your password does not match</string>
@@ -48,4 +48,8 @@
     <string name="create_your_class">Create your Class</string>
     <string name="number5">Number 5</string>
     <string name="see_video">See the Video!</string>
+    <string name="class_exists">That class already exists!</string>
+    <string name="class_success">The class created succeessfully.</string>
+    <string name="class_failed">The creation of the class failed.</string>
+    <string name="class_does_not_exist">That class does not exists!</string>
 </resources>
