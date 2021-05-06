@@ -47,7 +47,7 @@ public class MyClassesActivity extends FullScreen {
                             Map<String, Object> map = document.getData();
                             if (map != null) {
                                 for (Map.Entry<String, Object> entry : map.entrySet()) {
-                                    if(entry.getKey()!="0000" && entry.getKey()!="email"){
+                                    if(!entry.getKey().equals("0000") && !entry.getKey().equals("email")){
                                         classesNAME.add(entry.getValue().toString());
                                         classesID.add(entry.getKey());
                                     }
