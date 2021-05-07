@@ -6,11 +6,13 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class TestActivity extends FullScreen {
@@ -18,8 +20,8 @@ public class TestActivity extends FullScreen {
     ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2,  page3, page4, page5, page6, page7, page8, page9;
     Button true1, true2, true3, false1, false2, false3;
     int random, rUnit, id, mul, curPage;
-    String[] result;
     String from;
+    String[] result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,30 +71,34 @@ public class TestActivity extends FullScreen {
             rUnit = 10;
         }
 
-        makeItDark(curPage);
+        lockTimeLine(curPage);
         makeCards(rUnit);
+
+        GradientDrawable gd = new GradientDrawable();
+        gd.setColor(Color.WHITE);
+        gd.setStroke(2, Color.BLUE);
 
         true1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                true1.setBackgroundColor(Color.WHITE);
-                false1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                true1.setBackground(gd);
+                false1.setBackgroundColor(Color.WHITE);
             }
         });
 
         false1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                false1.setBackgroundColor(Color.WHITE);
-                true1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                false1.setBackground(gd);
+                true1.setBackgroundColor(Color.WHITE);
             }
         });
 
         true2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                true2.setBackgroundColor(Color.WHITE);
-                false2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                true2.setBackground(gd);
+                false2.setBackgroundColor(Color.WHITE);
             }
         });
 
@@ -100,24 +106,24 @@ public class TestActivity extends FullScreen {
         false2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                false2.setBackgroundColor(Color.WHITE);
-                true2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                false2.setBackground(gd);
+                true2.setBackgroundColor(Color.WHITE);
             }
         });
 
         true3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                true3.setBackgroundColor(Color.WHITE);
-                false3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                true3.setBackground(gd);
+                false3.setBackgroundColor(Color.WHITE);
             }
         });
 
         false3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                false3.setBackgroundColor(Color.WHITE);
-                true3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                false3.setBackground(gd);
+                true3.setBackgroundColor(Color.WHITE);
             }
         });
 
@@ -138,129 +144,168 @@ public class TestActivity extends FullScreen {
 
     }
 
-    private void makeItDark(int curPage) {
+    private void lockTimeLine(int curPage) {
         switch (curPage){
             case 1:
                 break;
             case 2:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 3:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 4:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 5:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page4.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 6:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page4.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page5.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 7:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page4.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page5.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page6.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 8:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page4.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page5.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page6.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page7.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page7.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
             case 9:
-                page1.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page2.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page3.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page4.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page5.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page6.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page7.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
-                page8.setBackgroundColor(getColor(R.color.backcolor_grey_dark));
+                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page7.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page8.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
                 break;
         }
     }
 
     private void makeCards(int rUnit) {
-        mul=1;
+        mul = 1;
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num1.setImageDrawable(ContextCompat.getDrawable(this, id));
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num2.setImageDrawable(ContextCompat.getDrawable(this, id));
         result = String.valueOf(mul).split("");
-        if(result.length == 2){
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result1_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-            result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-        }else{
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            id = getTranslation(Integer.parseInt(String.valueOf(result[2])));
-            result1_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+        if (result[0].equals("")) {
+            if (result.length == 2) {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[2]));
+                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
+        } else {
+            if (result.length == 1) {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[1]));
+                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
         }
 
 
-        mul=1;
+        mul = 1;
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num3.setImageDrawable(ContextCompat.getDrawable(this, id));
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num4.setImageDrawable(ContextCompat.getDrawable(this, id));
         result = String.valueOf(mul).split("");
-        if(result.length == 2){
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result2_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-            result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-        }else {
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            id = getTranslation(Integer.parseInt(String.valueOf(result[2])));
-            result2_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+        if (result[0].equals("")) {
+            if (result.length == 2) {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[2]));
+                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
+        } else {
+            if (result.length == 1) {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[1]));
+                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
         }
 
 
-        mul=1;
+        mul = 1;
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num5.setImageDrawable(ContextCompat.getDrawable(this, id));
         random = new Random().nextInt(rUnit);
-        mul*=random;
+        mul *= random;
         id = getTranslation(random);
         num6.setImageDrawable(ContextCompat.getDrawable(this, id));
         result = String.valueOf(mul).split("");
-        if(result.length == 2){
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result3_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-            result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-        }else {
-            id = getTranslation(Integer.parseInt(String.valueOf(result[1])));
-            result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            id = getTranslation(Integer.parseInt(String.valueOf(result[2])));
-            result3_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+        if (result[0].equals("")) {
+            if (result.length == 2) {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[1]));
+                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[2]));
+                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
+        }else{
+            if (result.length == 1) {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+            } else {
+                id = getTranslation(Integer.parseInt(result[0]));
+                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                id = getTranslation(Integer.parseInt(result[1]));
+                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+            }
         }
     }
 
