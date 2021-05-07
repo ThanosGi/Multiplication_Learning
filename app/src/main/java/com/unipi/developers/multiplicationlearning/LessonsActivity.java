@@ -55,10 +55,83 @@ public class LessonsActivity extends FullScreen {
         cardTest3 = findViewById(R.id.test3);
         cardFinalTest = findViewById(R.id.finalTest);
 
+        card0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 0);
+                startActivity(intent);
+            }
+        });
+        card1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 1);
+                startActivity(intent);
+            }
+        });
+        card2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 2);
+                startActivity(intent);
+            }
+        });
+        card3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 3);
+                startActivity(intent);
+            }
+        });
+        card4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 4);
+                startActivity(intent);
+            }
+        });
         card5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 5);
+                startActivity(intent);
+            }
+        });
+        card6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 6);
+                startActivity(intent);
+            }
+        });
+        card7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 7);
+                startActivity(intent);
+            }
+        });
+        card8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 8);
+                startActivity(intent);
+            }
+        });
+        card9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
+                intent.putExtra("lesson_number", 9);
                 startActivity(intent);
             }
         });
