@@ -19,7 +19,7 @@ public class TestActivity extends FullScreen {
     final int zeroID=R.drawable.zero, oneID=R.drawable.one, twoID=R.drawable.two, threeID=R.drawable.three, fourID=R.drawable.four, fiveID=R.drawable.five, sixID=R.drawable.six, sevenID=R.drawable.seven, eightID=R.drawable.eight, nineID=R.drawable.nine;
     ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2,  page3, page4, page5, page6, page7, page8, page9;
     Button true1, true2, true3, false1, false2, false3;
-    int random, rUnit, id, mul, curPage;
+    int random, random2, rUnit, rUnit2, id, mul, curPage;
     String from;
     String[] result;
 
@@ -61,14 +61,19 @@ public class TestActivity extends FullScreen {
         curPage = getIntent().getIntExtra("page",1);
         from = getIntent().getStringExtra("from");
 
+        //here it checks which test it is comes from to dynamically generate the numbers
         if(from.equals("test1")){
             rUnit = 3;
+            rUnit2= 19;
         }else if(from.equals("test2")){
             rUnit = 6;
+            rUnit2= 46;
         }else if(from.equals("test3")){
             rUnit = 9;
+            rUnit2= 73;
         }else{
             rUnit = 10;
+            rUnit2= 82;
         }
 
         lockTimeLine(curPage);
@@ -145,6 +150,7 @@ public class TestActivity extends FullScreen {
     }
 
     private void lockTimeLine(int curPage) {
+        //this function keeps the progress of the test and makes the progress bar
         switch (curPage){
             case 1:
                 break;
@@ -204,6 +210,8 @@ public class TestActivity extends FullScreen {
     }
 
     private void makeCards(int rUnit) {
+        //this function makes the results of multiplies
+        //making the result imageViews from the first multiply
         mul = 1;
         random = new Random().nextInt(rUnit);
         mul *= random;
@@ -213,32 +221,17 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num2.setImageDrawable(ContextCompat.getDrawable(this, id));
-        result = String.valueOf(mul).split("");
-        if (result[0].equals("")) {
-            if (result.length == 2) {
-                id = getTranslation(Integer.parseInt(result[1]));
-                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            } else {
-                id = getTranslation(Integer.parseInt(result[1]));
-                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-                id = getTranslation(Integer.parseInt(result[2]));
-                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
-            }
+
+        random2 = new Random().nextInt(2);
+        if (random2 == 0) {
+            random2 = new Random().nextInt(rUnit2);
+            fillTheIcons(random2, result1_num1, result1_num2);
+
         } else {
-            if (result.length == 1) {
-                id = getTranslation(Integer.parseInt(result[0]));
-                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            } else {
-                id = getTranslation(Integer.parseInt(result[0]));
-                result1_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-                id = getTranslation(Integer.parseInt(result[1]));
-                result1_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
-            }
+            fillTheIcons(mul, result1_num1, result1_num2);
         }
 
-
+        //making the result imageViews from the second multiply
         mul = 1;
         random = new Random().nextInt(rUnit);
         mul *= random;
@@ -248,32 +241,17 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num4.setImageDrawable(ContextCompat.getDrawable(this, id));
-        result = String.valueOf(mul).split("");
-        if (result[0].equals("")) {
-            if (result.length == 2) {
-                id = getTranslation(Integer.parseInt(result[1]));
-                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            } else {
-                id = getTranslation(Integer.parseInt(result[1]));
-                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-                id = getTranslation(Integer.parseInt(result[2]));
-                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
-            }
+
+        random2 = new Random().nextInt(2);
+        if (random2 == 0) {
+            random2 = new Random().nextInt(rUnit2);
+            fillTheIcons(random2, result2_num1, result2_num2);
+
         } else {
-            if (result.length == 1) {
-                id = getTranslation(Integer.parseInt(result[0]));
-                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-            } else {
-                id = getTranslation(Integer.parseInt(result[0]));
-                result2_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
-                id = getTranslation(Integer.parseInt(result[1]));
-                result2_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
-            }
+            fillTheIcons(mul, result2_num1, result2_num2);
         }
 
-
+        //making the result imageViews from the third multiply
         mul = 1;
         random = new Random().nextInt(rUnit);
         mul *= random;
@@ -283,33 +261,47 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num6.setImageDrawable(ContextCompat.getDrawable(this, id));
-        result = String.valueOf(mul).split("");
+
+        random2 = new Random().nextInt(2);
+        if (random2 == 0) {
+            random2 = new Random().nextInt(rUnit2);
+            fillTheIcons(random2, result3_num1, result3_num2);
+
+        } else {
+            fillTheIcons(mul, result3_num1, result3_num2);
+        }
+    }
+
+    public void fillTheIcons(int number, ImageView image1, ImageView image2){
+        //this function decides about the result of the multiplication, to put the wrong or the correct answer
+        result = String.valueOf(number).split("");
         if (result[0].equals("")) {
             if (result.length == 2) {
                 id = getTranslation(Integer.parseInt(result[1]));
-                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                image1.setImageDrawable(ContextCompat.getDrawable(this, id));
             } else {
                 id = getTranslation(Integer.parseInt(result[1]));
-                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setImageDrawable(ContextCompat.getDrawable(this, id));
                 id = getTranslation(Integer.parseInt(result[2]));
-                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setImageDrawable(ContextCompat.getDrawable(this, id));
             }
-        }else{
+        } else {
             if (result.length == 1) {
                 id = getTranslation(Integer.parseInt(result[0]));
-                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
-                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                image1.setImageDrawable(ContextCompat.getDrawable(this, id));
             } else {
                 id = getTranslation(Integer.parseInt(result[0]));
-                result3_num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setImageDrawable(ContextCompat.getDrawable(this, id));
                 id = getTranslation(Integer.parseInt(result[1]));
-                result3_num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setImageDrawable(ContextCompat.getDrawable(this, id));
             }
         }
     }
 
     private int getTranslation(int random) {
+        //this function translates the numbers into image id of specific number
         switch (random){
             case 0:
                 return zeroID;
