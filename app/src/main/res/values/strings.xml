@@ -52,4 +52,5 @@
     <string name="class_success">The class created succeessfully.</string>
     <string name="class_failed">The creation of the class failed.</string>
     <string name="class_does_not_exist">That class does not exists!</string>
+    <string name="progress">Your progress saved successfully</string>
 </resources>

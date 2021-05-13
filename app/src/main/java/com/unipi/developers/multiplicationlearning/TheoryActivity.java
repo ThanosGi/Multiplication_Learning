@@ -4,11 +4,24 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TheoryActivity extends FullScreen {
 
@@ -22,6 +35,12 @@ public class TheoryActivity extends FullScreen {
     AppCompatButton btn_seeVideo;
     int lesson_number;
     TextView txt_number;
+    boolean click_canvas1,click_canvas2,click_canvas3,click_canvas4,click_canvas5,click_canvas6,click_canvas7,click_canvas8,click_canvas9;
+    int score=1;
+    private FirebaseAuth mAuth;
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    Context context=this;
+
 
 
     @Override
@@ -29,6 +48,8 @@ public class TheoryActivity extends FullScreen {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theory);
+
+        mAuth = FirebaseAuth.getInstance();
 
         lesson_number = getIntent().getIntExtra("lesson_number",10);
 
@@ -100,11 +121,26 @@ public class TheoryActivity extends FullScreen {
         canvas8.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
         canvas9.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
 
+        click_canvas1=false;
+        canvas1.setOnClickListener(click->{
+            if(!click_canvas1){
+                score+=1;
+            }
+            click_canvas1=true;
+        });
         clear1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvas1.clear();
             }
+        });
+
+        click_canvas2=false;
+        canvas2.setOnClickListener(click->{
+            if(!click_canvas2){
+                score+=1;
+            }
+            click_canvas2=true;
         });
         clear2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,11 +148,27 @@ public class TheoryActivity extends FullScreen {
                 canvas2.clear();
             }
         });
+
+        click_canvas3=false;
+        canvas3.setOnClickListener(click->{
+            if(!click_canvas3){
+                score+=1;
+            }
+            click_canvas3=true;
+        });
         clear3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvas3.clear();
             }
+        });
+
+        click_canvas4=false;
+        canvas4.setOnClickListener(click->{
+            if(!click_canvas4){
+                score+=1;
+            }
+            click_canvas4=true;
         });
         clear4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,11 +176,27 @@ public class TheoryActivity extends FullScreen {
                 canvas4.clear();
             }
         });
+
+        click_canvas5=false;
+        canvas5.setOnClickListener(click->{
+            if(!click_canvas5){
+                score+=1;
+            }
+            click_canvas5=true;
+        });
         clear5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvas5.clear();
             }
+        });
+
+        click_canvas6=false;
+        canvas6.setOnClickListener(click->{
+            if(!click_canvas6){
+                score+=1;
+            }
+            click_canvas6=true;
         });
         clear6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,17 +204,41 @@ public class TheoryActivity extends FullScreen {
                 canvas6.clear();
             }
         });
+
+        click_canvas7=false;
+        canvas7.setOnClickListener(click->{
+            if(!click_canvas7){
+                score+=1;
+            }
+            click_canvas7=true;
+        });
         clear7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvas7.clear();
             }
         });
+
+        click_canvas8=false;
+        canvas8.setOnClickListener(click->{
+            if(!click_canvas8){
+                score+=1;
+            }
+            click_canvas8=true;
+        });
         clear8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 canvas8.clear();
             }
+        });
+
+        click_canvas9=false;
+        canvas9.setOnClickListener(click->{
+            if(!click_canvas9){
+                score+=1;
+            }
+            click_canvas9=true;
         });
         clear9.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -488,5 +580,38 @@ public class TheoryActivity extends FullScreen {
         if (hasFocus) {
             hideSystemUI();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        JSONObject jsonObject = new JSONObject();
+        JSONObject json_temp;
+        try {
+            json_temp= new JSONObject();
+            json_temp.put("success",score*10);
+            String temp = getIntent().getStringExtra("json");
+            jsonObject = new JSONObject(temp);
+            if(jsonObject.getJSONObject(String.valueOf(lesson_number)).getInt("success")<score*10){
+                jsonObject.put(String.valueOf(lesson_number),json_temp);
+            }
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        
+        Map<String, Object> user = new HashMap<>();
+        user.put("progress", jsonObject.toString());
+
+        db.collection("students")
+                .document(mAuth.getUid())
+                .set(user, SetOptions.merge())
+                .addOnSuccessListener(aVoid -> {
+
+                        Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show();
+                }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
+
     }
 }

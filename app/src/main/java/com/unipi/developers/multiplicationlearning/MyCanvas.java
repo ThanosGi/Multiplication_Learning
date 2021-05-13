@@ -51,6 +51,7 @@ public class MyCanvas extends View {
                 return true;
             case MotionEvent.ACTION_MOVE:
                 path.lineTo(xPos,yPos);
+                performClick();
                 break;
             case MotionEvent.ACTION_UP:
                 break;

@@ -53,4 +53,5 @@
     <string name="class_failed">Η δημιουργία της τάξης απέτυχε.</string>
     <string name="class_does_not_exist">Αυτή η τάξη δεν υπάρχει!</string>
     <string name="empty_error">Τα πεδία είναι κενά</string>
+    <string name="progress">Η πρόοδος σας αποθηκεύτηκε επιτυχώς</string>
 </resources>
