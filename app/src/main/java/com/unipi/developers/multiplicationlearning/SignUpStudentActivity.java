@@ -85,7 +85,7 @@ public class SignUpStudentActivity extends FullScreen {
             Map<String, Object> user = new HashMap<>();
             user.put("username", username.getText().toString());
             user.put("classId", classid.getText().toString());
-            user.put("progress", "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"Review1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"Review2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"Review3\":{\"success\":0},\"9\":{\"success\":0},\"Final_Review\":{\"success\":0}}");
+            user.put("progress", "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"test1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"test2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"test3\":{\"success\":0},\"9\":{\"success\":0},\"finalTest\":{\"success\":0}}");
 
             // Add a new document with a generated ID
             db_auth.collection("students")

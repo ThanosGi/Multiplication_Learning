@@ -4,17 +4,20 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.SetOptions;
 
 import org.json.JSONException;
@@ -22,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class TheoryActivity extends FullScreen {
 
@@ -40,8 +44,12 @@ public class TheoryActivity extends FullScreen {
     private FirebaseAuth mAuth;
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     Context context=this;
+    Button save;
+    String json_data;
 
-
+    FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+            .setPersistenceEnabled(true)
+            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,7 @@ public class TheoryActivity extends FullScreen {
         setContentView(R.layout.activity_theory);
 
         mAuth = FirebaseAuth.getInstance();
+        db.setFirestoreSettings(settings);
 
         lesson_number = getIntent().getIntExtra("lesson_number",10);
 
@@ -100,15 +109,15 @@ public class TheoryActivity extends FullScreen {
         img_res9_2 = findViewById(R.id.img_res9_2);
         txt_number = findViewById(R.id.txt_number);
         btn_seeVideo = findViewById(R.id.btn_seeVideo);
+        save=findViewById(R.id.btn_save);
 
-        btn_seeVideo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TheoryActivity.this,VideoActivity.class);
-                intent.putExtra("lesson_number",lesson_number);
-                startActivity(intent);
-            }
+        btn_seeVideo.setOnClickListener(v -> {
+            Intent intent = new Intent(TheoryActivity.this,VideoActivity.class);
+            intent.putExtra("lesson_number",lesson_number);
+            startActivity(intent);
         });
+
+        save.setOnClickListener(sv-> save_data());
 
         scrollView.setEnableScrolling(true);
         canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
@@ -128,12 +137,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas1=true;
         });
-        clear1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas1.clear();
-            }
-        });
+        clear1.setOnClickListener(v -> canvas1.clear());
 
         click_canvas2=false;
         canvas2.setOnClickListener(click->{
@@ -142,12 +146,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas2=true;
         });
-        clear2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas2.clear();
-            }
-        });
+        clear2.setOnClickListener(v -> canvas2.clear());
 
         click_canvas3=false;
         canvas3.setOnClickListener(click->{
@@ -156,12 +155,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas3=true;
         });
-        clear3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas3.clear();
-            }
-        });
+        clear3.setOnClickListener(v -> canvas3.clear());
 
         click_canvas4=false;
         canvas4.setOnClickListener(click->{
@@ -170,12 +164,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas4=true;
         });
-        clear4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas4.clear();
-            }
-        });
+        clear4.setOnClickListener(v -> canvas4.clear());
 
         click_canvas5=false;
         canvas5.setOnClickListener(click->{
@@ -184,12 +173,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas5=true;
         });
-        clear5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas5.clear();
-            }
-        });
+        clear5.setOnClickListener(v -> canvas5.clear());
 
         click_canvas6=false;
         canvas6.setOnClickListener(click->{
@@ -198,12 +182,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas6=true;
         });
-        clear6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas6.clear();
-            }
-        });
+        clear6.setOnClickListener(v -> canvas6.clear());
 
         click_canvas7=false;
         canvas7.setOnClickListener(click->{
@@ -212,12 +191,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas7=true;
         });
-        clear7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas7.clear();
-            }
-        });
+        clear7.setOnClickListener(v -> canvas7.clear());
 
         click_canvas8=false;
         canvas8.setOnClickListener(click->{
@@ -226,12 +200,7 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas8=true;
         });
-        clear8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas8.clear();
-            }
-        });
+        clear8.setOnClickListener(v -> canvas8.clear());
 
         click_canvas9=false;
         canvas9.setOnClickListener(click->{
@@ -240,42 +209,34 @@ public class TheoryActivity extends FullScreen {
             }
             click_canvas9=true;
         });
-        clear9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas9.clear();
-            }
-        });
+        clear9.setOnClickListener(v -> canvas9.clear());
 
 
         btn_draw = findViewById(R.id.btn_draw);
-        btn_draw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollView.setEnableScrolling(!isDrawable);
-                if (!isDrawable){
-                    canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas2.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas3.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas4.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas5.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas6.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas7.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas8.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                    canvas9.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                }else {
-                    canvas1.setForeground(null);
-                    canvas2.setForeground(null);
-                    canvas3.setForeground(null);
-                    canvas4.setForeground(null);
-                    canvas5.setForeground(null);
-                    canvas6.setForeground(null);
-                    canvas7.setForeground(null);
-                    canvas8.setForeground(null);
-                    canvas9.setForeground(null);
-                }
-                isDrawable = !isDrawable;
+        btn_draw.setOnClickListener(v -> {
+            scrollView.setEnableScrolling(!isDrawable);
+            if (!isDrawable){
+                canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas2.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas3.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas4.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas5.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas6.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas7.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas8.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+                canvas9.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+            }else {
+                canvas1.setForeground(null);
+                canvas2.setForeground(null);
+                canvas3.setForeground(null);
+                canvas4.setForeground(null);
+                canvas5.setForeground(null);
+                canvas6.setForeground(null);
+                canvas7.setForeground(null);
+                canvas8.setForeground(null);
+                canvas9.setForeground(null);
             }
+            isDrawable = !isDrawable;
         });
 
         switch (lesson_number){
@@ -584,8 +545,14 @@ public class TheoryActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
+        save_data();
+        Intent data = new Intent();
+        data.putExtra("json", json_data);
+        setResult(Activity.RESULT_OK, data);
         super.onBackPressed();
+    }
 
+    private void save_data(){
         JSONObject jsonObject = new JSONObject();
         JSONObject json_temp;
         try {
@@ -601,17 +568,14 @@ public class TheoryActivity extends FullScreen {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        
+        json_data=jsonObject.toString();
+
         Map<String, Object> user = new HashMap<>();
-        user.put("progress", jsonObject.toString());
+        user.put("progress", json_data);
 
         db.collection("students")
-                .document(mAuth.getUid())
+                .document(Objects.requireNonNull(mAuth.getUid()))
                 .set(user, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> {
-
-                        Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show();
-                }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
-
+                .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
     }
 }

@@ -8,13 +8,22 @@
     android:background="@drawable/background_orange">
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_save"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:background="@drawable/ic_draw" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_draw"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/ic_draw"/>
+        android:background="@drawable/ic_draw" />
 
     <LinearLayout
         android:layout_width="match_parent"

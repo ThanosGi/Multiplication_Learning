@@ -1,9 +1,9 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -11,8 +11,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import java.util.ArrayList;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 public class TestActivity extends FullScreen {
@@ -23,11 +33,20 @@ public class TestActivity extends FullScreen {
     String from;
     String[] result;
 
+    private FirebaseAuth mAuth;
+    FirebaseFirestore db= FirebaseFirestore.getInstance();
+    Context context=this;
+    private int score=0;
+    int last_score;
+    Boolean anwser1,anwser2,anwser3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
+
+        mAuth = FirebaseAuth.getInstance();
 
         result1_num1 = findViewById(R.id.result1_num1);
         result1_num2 = findViewById(R.id.result1_num2);
@@ -60,20 +79,26 @@ public class TestActivity extends FullScreen {
 
         curPage = getIntent().getIntExtra("page",1);
         from = getIntent().getStringExtra("from");
+        last_score=getIntent().getIntExtra("old_score",0);
 
         //here it checks which test it is comes from to dynamically generate the numbers
-        if(from.equals("test1")){
-            rUnit = 3;
-            rUnit2= 19;
-        }else if(from.equals("test2")){
-            rUnit = 6;
-            rUnit2= 46;
-        }else if(from.equals("test3")){
-            rUnit = 9;
-            rUnit2= 73;
-        }else{
-            rUnit = 10;
-            rUnit2= 82;
+        switch (from) {
+            case "test1":
+                rUnit = 3;
+                rUnit2 = 19;
+                break;
+            case "test2":
+                rUnit = 6;
+                rUnit2 = 46;
+                break;
+            case "test3":
+                rUnit = 9;
+                rUnit2 = 73;
+                break;
+            default:
+                rUnit = 10;
+                rUnit2 = 82;
+                break;
         }
 
         lockTimeLine(curPage);
@@ -83,68 +108,87 @@ public class TestActivity extends FullScreen {
         gd.setColor(Color.WHITE);
         gd.setStroke(2, Color.BLUE);
 
-        true1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                true1.setBackground(gd);
-                false1.setBackgroundColor(Color.WHITE);
-            }
+        true1.setOnClickListener(v -> {
+            true1.setBackground(gd);
+            false1.setBackgroundColor(Color.WHITE);
         });
 
-        false1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                false1.setBackground(gd);
-                true1.setBackgroundColor(Color.WHITE);
-            }
+        false1.setOnClickListener(v -> {
+            false1.setBackground(gd);
+            true1.setBackgroundColor(Color.WHITE);
         });
 
-        true2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                true2.setBackground(gd);
-                false2.setBackgroundColor(Color.WHITE);
-            }
+        true2.setOnClickListener(v -> {
+            true2.setBackground(gd);
+            false2.setBackgroundColor(Color.WHITE);
         });
 
 
-        false2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                false2.setBackground(gd);
-                true2.setBackgroundColor(Color.WHITE);
-            }
+        false2.setOnClickListener(v -> {
+            false2.setBackground(gd);
+            true2.setBackgroundColor(Color.WHITE);
         });
 
-        true3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                true3.setBackground(gd);
-                false3.setBackgroundColor(Color.WHITE);
-            }
+        true3.setOnClickListener(v -> {
+            true3.setBackground(gd);
+            false3.setBackgroundColor(Color.WHITE);
         });
 
-        false3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                false3.setBackground(gd);
-                true3.setBackgroundColor(Color.WHITE);
-            }
+        false3.setOnClickListener(v -> {
+            false3.setBackground(gd);
+            true3.setBackgroundColor(Color.WHITE);
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                if(curPage< 9) {
-                    intent = new Intent(TestActivity.this, TestActivity.class);
-                    intent.putExtra("from", from);
-                    intent.putExtra("page", curPage + 1);
-                }else{
-                    intent = new Intent(TestActivity.this, LessonsActivity.class);
+        next.setOnClickListener(v -> {
+            Intent intent;
+            if((true1.getBackground()==gd && anwser1 || false1.getBackground()==gd && !anwser1) || (true2.getBackground()==gd && anwser2 || false2.getBackground()==gd && !anwser2) ||(true3.getBackground()==gd && anwser3 || false3.getBackground()==gd && !anwser3)){
+                score=10;
+            }
+
+            JSONObject jsonObject=new JSONObject();
+            JSONObject json_temp;
+            try {
+                String temp = getIntent().getStringExtra("json");
+                jsonObject = new JSONObject(temp);
+
+                json_temp= new JSONObject();
+                if(curPage==1){
+                    int last_score=jsonObject.getJSONObject(from).getInt("success");
+                    json_temp.put("success",score);
+                }else if (curPage< 9){
+                    json_temp.put("success",jsonObject.getJSONObject(from).getInt("success")+score);
+                }else if(curPage==9 && last_score<jsonObject.getJSONObject(from).getInt("success")+score){
+                    json_temp.put("success",jsonObject.getJSONObject(from).getInt("success")+score);
+                }else {
+                    json_temp.put("success",last_score);
+
                 }
-                startActivity(intent);
+                jsonObject.put(from,json_temp);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+            String new_json=jsonObject.toString();
+            if(curPage< 9) {
+                intent = new Intent(TestActivity.this, TestActivity.class);
+                intent.putExtra("from", from);
+                intent.putExtra("json", new_json);
+                intent.putExtra("old_score", last_score);
+                intent.putExtra("page", curPage + 1);
+            }else{
+                Map<String, Object> user = new HashMap<>();
+                user.put("progress", new_json);
+
+                db.collection("students")
+                        .document(Objects.requireNonNull(mAuth.getUid()))
+                        .set(user, SetOptions.merge())
+                        .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
+                intent = new Intent(TestActivity.this, LessonsActivity.class);
+                intent.putExtra("json", new_json);
+
+            }
+            startActivity(intent);
         });
 
     }
@@ -224,10 +268,11 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
+            anwser1=false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result1_num1, result1_num2);
-
         } else {
+            anwser1=true;
             fillTheIcons(mul, result1_num1, result1_num2);
         }
 
@@ -244,10 +289,11 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
+            anwser2=false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result2_num1, result2_num2);
-
         } else {
+            anwser2=true;
             fillTheIcons(mul, result2_num1, result2_num2);
         }
 
@@ -264,10 +310,11 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
+            anwser3=false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result3_num1, result3_num2);
-
         } else {
+            anwser3=true;
             fillTheIcons(mul, result3_num1, result3_num2);
         }
     }
@@ -334,5 +381,10 @@ public class TestActivity extends FullScreen {
         if (hasFocus) {
             hideSystemUI();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
