@@ -65,6 +65,29 @@ public class LessonsActivity extends FullScreen {
         mAuth = FirebaseAuth.getInstance();
         help=findViewById(R.id.btn_help);
         help.setOnClickListener(this::logout);
+
+        JSONObject json;
+        String temp=getIntent().getStringExtra("json");
+        try {
+            json = new JSONObject(temp);
+            zero_lesson =json.getJSONObject("0").getInt("success");
+            one_lesson =json.getJSONObject("1").getInt("success");
+            two_lesson =json.getJSONObject("2").getInt("success");
+            three_lesson =json.getJSONObject("3").getInt("success");
+            four_lesson =(json.getJSONObject("4").getInt("success"));
+            five_lesson =(json.getJSONObject("5").getInt("success"));
+            six_lesson =(json.getJSONObject("6").getInt("success"));
+            seven_lesson =(json.getJSONObject("7").getInt("success"));
+            eight_lesson =(json.getJSONObject("8").getInt("success"));
+            nine_lesson =(json.getJSONObject("9").getInt("success"));
+            review1 =(json.getJSONObject("Review1").getInt("success"));
+            review2 =(json.getJSONObject("Review2").getInt("success"));
+            review3 =(json.getJSONObject("Review3").getInt("success"));
+            final_review =(json.getJSONObject("Final_Review").getInt("success"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

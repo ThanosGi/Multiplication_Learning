@@ -1,6 +1,5 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Context;
@@ -11,13 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -27,6 +28,7 @@ public class LogInActivity extends FullScreen {
     EditText username;
     EditText passphrase;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseFirestore db_json = FirebaseFirestore.getInstance();
 
 
     @Override
@@ -101,7 +103,20 @@ public class LogInActivity extends FullScreen {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                startActivity(new Intent(context, LessonsActivity.class));
+
+                                DocumentReference docRef = db_json.collection("students").document(mAuth.getUid());
+                                docRef.get().addOnCompleteListener(found -> {
+                                        if (found.isSuccessful()) {
+                                            DocumentSnapshot document_json = found.getResult();
+                                            if (document_json.exists()) {
+                                                JSONObject json;
+                                                String temp=document_json.getString("progress");
+                                                Intent intent = new Intent(context, LessonsActivity.class);
+                                                intent.putExtra("json", temp);
+                                                startActivity(intent);
+                                            }
+                                        }
+                                    });
                             }
                         }
                     });
