@@ -7,10 +7,8 @@ import androidx.core.content.ContextCompat;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,7 +42,6 @@ public class TheoryActivity extends FullScreen {
     private FirebaseAuth mAuth;
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     Context context=this;
-    Button save;
     String json_data;
 
     FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
@@ -109,7 +106,6 @@ public class TheoryActivity extends FullScreen {
         img_res9_2 = findViewById(R.id.img_res9_2);
         txt_number = findViewById(R.id.txt_number);
         btn_seeVideo = findViewById(R.id.btn_seeVideo);
-        save=findViewById(R.id.btn_save);
 
         btn_seeVideo.setOnClickListener(v -> {
             Intent intent = new Intent(TheoryActivity.this,VideoActivity.class);
@@ -117,7 +113,6 @@ public class TheoryActivity extends FullScreen {
             startActivity(intent);
         });
 
-        save.setOnClickListener(sv-> save_data());
 
         scrollView.setEnableScrolling(true);
         canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));

@@ -14,7 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MultiplicationLearning">
-        <activity android:name=".MyClassesActivity"></activity>
+        <activity
+            android:name=".StudentsStatus"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".MyClassesActivity"
+            android:screenOrientation="landscape"/>
         <activity
             android:name=".VideoActivity"
             android:screenOrientation="landscape" />
