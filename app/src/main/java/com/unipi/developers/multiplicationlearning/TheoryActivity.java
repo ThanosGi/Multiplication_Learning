@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,7 @@ import java.util.Objects;
 public class TheoryActivity extends FullScreen {
 
     CustomScrollView scrollView;
-    AppCompatButton btn_draw;
-    boolean isDrawable = true;
+    RelativeLayout relativeLayout;
     ImageView clear1,clear2,clear3,clear4,clear5,clear6,clear7,clear8,clear9;
     ImageView img_num1,img_num2,img_num3,img_num4,img_num5,img_num6,img_num7,img_num8,img_num9;
     ImageView img_res1_1,img_res2_1,img_res2_2,img_res3_1,img_res3_2,img_res4_1,img_res4_2,img_res5_1,img_res5_2,img_res6_1,img_res6_2,img_res7_1,img_res7_2,img_res8_1,img_res8_2,img_res9_1,img_res9_2;
@@ -60,6 +60,7 @@ public class TheoryActivity extends FullScreen {
         lesson_number = getIntent().getIntExtra("lesson_number",10);
 
         scrollView = findViewById(R.id.scrollview);
+        relativeLayout = findViewById(R.id.relativeLayout);
         clear1 = findViewById(R.id.clear1);
         clear2 = findViewById(R.id.clear2);
         clear3 = findViewById(R.id.clear3);
@@ -115,21 +116,19 @@ public class TheoryActivity extends FullScreen {
 
 
         scrollView.setEnableScrolling(true);
-        canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas2.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas3.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas4.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas5.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas6.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas7.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas8.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-        canvas9.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                scrollView.setEnableScrolling(true);
+            }
+        });
 
         click_canvas1=false;
         canvas1.setOnClickListener(click->{
             if(!click_canvas1){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas1=true;
         });
         clear1.setOnClickListener(v -> canvas1.clear());
@@ -139,6 +138,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas2){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas2=true;
         });
         clear2.setOnClickListener(v -> canvas2.clear());
@@ -148,6 +148,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas3){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas3=true;
         });
         clear3.setOnClickListener(v -> canvas3.clear());
@@ -157,6 +158,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas4){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas4=true;
         });
         clear4.setOnClickListener(v -> canvas4.clear());
@@ -166,6 +168,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas5){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas5=true;
         });
         clear5.setOnClickListener(v -> canvas5.clear());
@@ -175,6 +178,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas6){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas6=true;
         });
         clear6.setOnClickListener(v -> canvas6.clear());
@@ -184,6 +188,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas7){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas7=true;
         });
         clear7.setOnClickListener(v -> canvas7.clear());
@@ -193,6 +198,7 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas8){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas8=true;
         });
         clear8.setOnClickListener(v -> canvas8.clear());
@@ -202,37 +208,10 @@ public class TheoryActivity extends FullScreen {
             if(!click_canvas9){
                 score+=1;
             }
+            scrollView.setEnableScrolling(false);
             click_canvas9=true;
         });
         clear9.setOnClickListener(v -> canvas9.clear());
-
-
-        btn_draw = findViewById(R.id.btn_draw);
-        btn_draw.setOnClickListener(v -> {
-            scrollView.setEnableScrolling(!isDrawable);
-            if (!isDrawable){
-                canvas1.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas2.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas3.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas4.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas5.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas6.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas7.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas8.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-                canvas9.setForeground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.fence));
-            }else {
-                canvas1.setForeground(null);
-                canvas2.setForeground(null);
-                canvas3.setForeground(null);
-                canvas4.setForeground(null);
-                canvas5.setForeground(null);
-                canvas6.setForeground(null);
-                canvas7.setForeground(null);
-                canvas8.setForeground(null);
-                canvas9.setForeground(null);
-            }
-            isDrawable = !isDrawable;
-        });
 
         switch (lesson_number){
             case 0:

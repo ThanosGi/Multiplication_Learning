@@ -5,16 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TheoryActivity"
+    android:id="@+id/relativeLayout"
     android:background="@drawable/background_orange">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_draw"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
+    <ImageView
+        android:id="@+id/btn_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_help"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/ic_draw" />
+        android:layout_marginTop="15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
