@@ -1,9 +1,8 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class MiniTestActivity extends FullScreen {
 

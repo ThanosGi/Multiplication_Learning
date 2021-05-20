@@ -34,7 +34,7 @@ public class MyCanvas extends View {
         canvas.drawPath(path, paint);
     }
 
-    public void clear(){
+    public void clear() {
         backgroundColor = Color.WHITE;
         path = new Path();
         invalidate();
@@ -45,12 +45,12 @@ public class MyCanvas extends View {
         float xPos = event.getX();
         float yPos = event.getY();
 
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                path.moveTo(xPos,yPos);
+                path.moveTo(xPos, yPos);
                 return true;
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(xPos,yPos);
+                path.lineTo(xPos, yPos);
                 performClick();
                 break;
             case MotionEvent.ACTION_UP:

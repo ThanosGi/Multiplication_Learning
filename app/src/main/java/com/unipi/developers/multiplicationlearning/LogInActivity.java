@@ -1,7 +1,5 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,15 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Objects;
 
@@ -46,8 +43,8 @@ public class LogInActivity extends FullScreen {
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
 
-        username=findViewById(R.id.et_username);
-        passphrase=findViewById(R.id.et_passphrase);
+        username = findViewById(R.id.et_username);
+        passphrase = findViewById(R.id.et_passphrase);
 
         txtCreateAccount = findViewById(R.id.txt_create_account);
         txtCreateAccount.setOnClickListener(v -> {
@@ -64,8 +61,8 @@ public class LogInActivity extends FullScreen {
         }
     }
 
-    public void log_in(View view){
-        try{
+    public void log_in(View view) {
+        try {
             mAuth.signInWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
                     .addOnCompleteListener(this, task -> {
                         if (task.isSuccessful()) {
@@ -77,22 +74,22 @@ public class LogInActivity extends FullScreen {
                             Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void updateUI(FirebaseUser account){
+    private void updateUI(FirebaseUser account) {
 
-        if(account != null) {
-            Context context=this;
+        if (account != null) {
+            Context context = this;
 
             db.collection("teachers")
                     .whereEqualTo("email", username.getText().toString())
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            for (QueryDocumentSnapshot ignored : Objects.requireNonNull(task.getResult())) {
                                 startActivity(new Intent(context, TeacherActivity.class));
                             }
                         }
@@ -102,21 +99,20 @@ public class LogInActivity extends FullScreen {
                     .get()
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                            for (QueryDocumentSnapshot ignored : Objects.requireNonNull(task.getResult())) {
 
-                                DocumentReference docRef = db_json.collection("students").document(mAuth.getUid());
+                                DocumentReference docRef = db_json.collection("students").document(Objects.requireNonNull(mAuth.getUid()));
                                 docRef.get().addOnCompleteListener(found -> {
-                                        if (found.isSuccessful()) {
-                                            DocumentSnapshot document_json = found.getResult();
-                                            if (document_json.exists()) {
-                                                JSONObject json;
-                                                String temp=document_json.getString("progress");
-                                                Intent intent = new Intent(context, LessonsActivity.class);
-                                                intent.putExtra("json", temp);
-                                                startActivity(intent);
-                                            }
+                                    if (found.isSuccessful()) {
+                                        DocumentSnapshot document_json = found.getResult();
+                                        if (Objects.requireNonNull(document_json).exists()) {
+                                            String temp = document_json.getString("progress");
+                                            Intent intent = new Intent(context, LessonsActivity.class);
+                                            intent.putExtra("json", temp);
+                                            startActivity(intent);
                                         }
-                                    });
+                                    }
+                                });
                             }
                         }
                     });

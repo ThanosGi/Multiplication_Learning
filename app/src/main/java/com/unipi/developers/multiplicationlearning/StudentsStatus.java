@@ -2,24 +2,16 @@ package com.unipi.developers.multiplicationlearning;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.app.ActivityCompat;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.charts.RadarChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.PieData;
-import com.github.mikephil.charting.data.PieDataSet;
-import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.data.RadarData;
 import com.github.mikephil.charting.data.RadarDataSet;
 import com.github.mikephil.charting.data.RadarEntry;
@@ -49,8 +41,8 @@ public class StudentsStatus extends FullScreen {
     RadarChart radarChart;
     int current_user = -1;
     TextView txt_student_name;
-    AppCompatButton btn_prev,btn_next;
-    int zero_lesson,one_lesson,two_lesson,three_lesson,four_lesson,five_lesson,six_lesson,seven_lesson,eight_lesson,nine_lesson,review1,review2,review3,final_review;
+    AppCompatButton btn_prev, btn_next;
+    int zero_lesson, one_lesson, two_lesson, three_lesson, four_lesson, five_lesson, six_lesson, seven_lesson, eight_lesson, nine_lesson, review1, review2, review3, final_review;
     String json_data;
 
     @Override
@@ -65,31 +57,25 @@ public class StudentsStatus extends FullScreen {
         btn_next = findViewById(R.id.btn_next);
         btn_prev = findViewById(R.id.btn_prev);
 
-        btn_prev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (current_user != -1){
-                    if (current_user > 0){
-                        current_user--;
-                    }else {
-                        current_user = students_username.size()-1;
-                    }
-                    make_chart(current_user);
+        btn_prev.setOnClickListener(v -> {
+            if (current_user != -1) {
+                if (current_user > 0) {
+                    current_user--;
+                } else {
+                    current_user = students_username.size() - 1;
                 }
+                make_chart(current_user);
             }
         });
 
-        btn_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (current_user != -1){
-                    if (current_user < students_username.size()-1){
-                        current_user++;
-                    }else {
-                        current_user = 0;
-                    }
-                    make_chart(current_user);
+        btn_next.setOnClickListener(v -> {
+            if (current_user != -1) {
+                if (current_user < students_username.size() - 1) {
+                    current_user++;
+                } else {
+                    current_user = 0;
                 }
+                make_chart(current_user);
             }
         });
     }
@@ -105,7 +91,7 @@ public class StudentsStatus extends FullScreen {
         get_classes();
     }
 
-    private void get_classes(){
+    private void get_classes() {
         db_get_classes.collection("teachers")
                 .document(Objects.requireNonNull(mAuth.getUid()))
                 .get()
@@ -116,7 +102,7 @@ public class StudentsStatus extends FullScreen {
                             Map<String, Object> map = document.getData();
                             if (map != null) {
                                 for (Map.Entry<String, Object> entry : map.entrySet()) {
-                                    if(!entry.getKey().equals("0000") && !entry.getKey().equals("email")){
+                                    if (!entry.getKey().equals("0000") && !entry.getKey().equals("email")) {
                                         classesNAME.add(entry.getValue().toString());
                                         classesID.add(entry.getKey());
                                     }
@@ -128,13 +114,13 @@ public class StudentsStatus extends FullScreen {
                 });
     }
 
-    private void get_scores(){
+    private void get_scores() {
         db_get_scores.collection("students")
-                .whereIn("classId",classesID)
+                .whereIn("classId", classesID)
                 .get()
                 .addOnSuccessListener(found -> {
-                    if (!found.getDocuments().isEmpty()){
-                        for (DocumentSnapshot document: found.getDocuments()) {
+                    if (!found.getDocuments().isEmpty()) {
+                        for (DocumentSnapshot document : found.getDocuments()) {
                             students_progress.add(Objects.requireNonNull(document.get("progress")).toString());
                             students_username.add(Objects.requireNonNull(document.get("username")).toString());
                             students_classId.add(Objects.requireNonNull(document.get("classId")).toString());
@@ -153,40 +139,40 @@ public class StudentsStatus extends FullScreen {
         }
     }
 
-    private void make_chart(int pos){
+    private void make_chart(int pos) {
         txt_student_name.setText(students_username.get(pos));
         json_data = students_progress.get(pos);
         JSONObject json;
         try {
             json = new JSONObject(json_data);
-            zero_lesson =json.getJSONObject("0").getInt("success");
-            one_lesson =json.getJSONObject("1").getInt("success");
-            two_lesson =json.getJSONObject("2").getInt("success");
-            three_lesson =json.getJSONObject("3").getInt("success");
-            four_lesson =(json.getJSONObject("4").getInt("success"));
-            five_lesson =(json.getJSONObject("5").getInt("success"));
-            six_lesson =(json.getJSONObject("6").getInt("success"));
-            seven_lesson =(json.getJSONObject("7").getInt("success"));
-            eight_lesson =(json.getJSONObject("8").getInt("success"));
-            nine_lesson =(json.getJSONObject("9").getInt("success"));
-            review1 =(json.getJSONObject("test1").getInt("success"));
-            review2 =(json.getJSONObject("test2").getInt("success"));
-            review3 =(json.getJSONObject("test3").getInt("success"));
-            final_review =(json.getJSONObject("finalTest").getInt("success"));
+            zero_lesson = json.getJSONObject("0").getInt("success");
+            one_lesson = json.getJSONObject("1").getInt("success");
+            two_lesson = json.getJSONObject("2").getInt("success");
+            three_lesson = json.getJSONObject("3").getInt("success");
+            four_lesson = (json.getJSONObject("4").getInt("success"));
+            five_lesson = (json.getJSONObject("5").getInt("success"));
+            six_lesson = (json.getJSONObject("6").getInt("success"));
+            seven_lesson = (json.getJSONObject("7").getInt("success"));
+            eight_lesson = (json.getJSONObject("8").getInt("success"));
+            nine_lesson = (json.getJSONObject("9").getInt("success"));
+            review1 = (json.getJSONObject("test1").getInt("success"));
+            review2 = (json.getJSONObject("test2").getInt("success"));
+            review3 = (json.getJSONObject("test3").getInt("success"));
+            final_review = (json.getJSONObject("finalTest").getInt("success"));
 
             ArrayList<BarEntry> stats = new ArrayList<>();
-            stats.add(new BarEntry(0,zero_lesson));
-            stats.add(new BarEntry(1,one_lesson));
-            stats.add(new BarEntry(2,two_lesson));
-            stats.add(new BarEntry(3,three_lesson));
-            stats.add(new BarEntry(4,four_lesson));
-            stats.add(new BarEntry(5,five_lesson));
-            stats.add(new BarEntry(6,six_lesson));
-            stats.add(new BarEntry(7,seven_lesson));
-            stats.add(new BarEntry(8,eight_lesson));
-            stats.add(new BarEntry(9,nine_lesson));
+            stats.add(new BarEntry(0, zero_lesson));
+            stats.add(new BarEntry(1, one_lesson));
+            stats.add(new BarEntry(2, two_lesson));
+            stats.add(new BarEntry(3, three_lesson));
+            stats.add(new BarEntry(4, four_lesson));
+            stats.add(new BarEntry(5, five_lesson));
+            stats.add(new BarEntry(6, six_lesson));
+            stats.add(new BarEntry(7, seven_lesson));
+            stats.add(new BarEntry(8, eight_lesson));
+            stats.add(new BarEntry(9, nine_lesson));
 
-            BarDataSet barDataSet = new BarDataSet(stats,getString(R.string.lessons));
+            BarDataSet barDataSet = new BarDataSet(stats, getString(R.string.lessons));
             barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
             barDataSet.setValueTextColor(Color.BLACK);
             barDataSet.setValueTextSize(16f);
@@ -213,7 +199,7 @@ public class StudentsStatus extends FullScreen {
             RadarData radarData = new RadarData();
             radarData.addDataSet(radarDataSet);
 
-            String[] labels = {getString(R.string.review1),getString(R.string.review2),getString(R.string.review3),getString(R.string.final_review),};
+            String[] labels = {getString(R.string.review1), getString(R.string.review2), getString(R.string.review3), getString(R.string.final_review),};
 
             XAxis xAxis = radarChart.getXAxis();
             xAxis.setValueFormatter(new IndexAxisValueFormatter(labels));

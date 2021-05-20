@@ -2,16 +2,11 @@ package com.unipi.developers.multiplicationlearning;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +22,8 @@ public class MyClassesActivity extends FullScreen {
     ArrayList<String> classesID;
     ArrayList<String> classesNAME;
     TableLayout tableLayout;
-    TextView class_name_row,class_id_row;
+    TextView class_name_row, class_id_row;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,30 +49,30 @@ public class MyClassesActivity extends FullScreen {
                             Map<String, Object> map = document.getData();
                             if (map != null) {
                                 for (Map.Entry<String, Object> entry : map.entrySet()) {
-                                    if(!entry.getKey().equals("0000") && !entry.getKey().equals("email")){
+                                    if (!entry.getKey().equals("0000") && !entry.getKey().equals("email")) {
                                         classesNAME.add(entry.getValue().toString());
                                         classesID.add(entry.getKey());
                                     }
                                 }
                             }
 
-                            if (classesNAME.size()==classesID.size()){
-                                for (int i=0; i < classesNAME.size();i++){
-                                    TableRow row= new TableRow(this);
+                            if (classesNAME.size() == classesID.size()) {
+                                for (int i = 0; i < classesNAME.size(); i++) {
+                                    TableRow row = new TableRow(this);
                                     TableRow.LayoutParams lp;
                                     lp = new TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 4f);
                                     //row.setLayoutParams(lp);
                                     class_name_row = new TextView(this);
                                     class_name_row.setText(classesNAME.get(i));
-                                    class_name_row.setTextColor(Color.rgb(249,195,89));
-                                    class_name_row.setPadding(10,10,10,10);
+                                    class_name_row.setTextColor(Color.rgb(249, 195, 89));
+                                    class_name_row.setPadding(10, 10, 10, 10);
                                     class_name_row.setTextSize(20);
                                     class_name_row.setGravity(Gravity.CENTER_HORIZONTAL);
                                     class_name_row.setLayoutParams(lp);
                                     class_id_row = new TextView(this);
                                     class_id_row.setText(classesID.get(i));
-                                    class_id_row.setTextColor(Color.rgb(249,195,89));
-                                    class_id_row.setPadding(10,10,10,10);
+                                    class_id_row.setTextColor(Color.rgb(249, 195, 89));
+                                    class_id_row.setPadding(10, 10, 10, 10);
                                     class_id_row.setTextSize(20);
                                     class_id_row.setGravity(Gravity.CENTER_HORIZONTAL);
                                     class_id_row.setLayoutParams(lp);
@@ -84,12 +80,12 @@ public class MyClassesActivity extends FullScreen {
                                     row.addView(class_id_row);
                                     tableLayout.addView(row);
                                 }
-                            }else {
-                                Toast.makeText(getApplicationContext(),"Wrong Data",Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Wrong Data", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
-        });
+                });
     }
 
     @Override

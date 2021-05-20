@@ -1,12 +1,10 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class CreateAccountActivity extends FullScreen {
     @Override
@@ -24,13 +22,13 @@ public class CreateAccountActivity extends FullScreen {
         }
     }
 
-    public void dog_button(View view){
+    public void dog_button(View view) {
         Intent intent = new Intent(CreateAccountActivity.this, SignUpStudentActivity.class);
-        intent.putExtra("from","CreateAccountActivity");
+        intent.putExtra("from", "CreateAccountActivity");
         startActivity(intent);
     }
 
-    public void cat_button(View view){
+    public void cat_button(View view) {
         startActivity(new Intent(getApplicationContext(), SignUpTeacherActivity.class));
     }
 }

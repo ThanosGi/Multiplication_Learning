@@ -1,7 +1,5 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -24,81 +22,81 @@ public class VideoActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        lesson_number = getIntent().getIntExtra("lesson_number",10);
+        lesson_number = getIntent().getIntExtra("lesson_number", 10);
 
         youTubePlayerView = findViewById(R.id.youtubePlay);
         onInitializedListener = new YouTubePlayer.OnInitializedListener() {
             @Override
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
-                switch (lesson_number){
+                switch (lesson_number) {
                     case 0:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("AFc63zA52cA");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("xR0Pi4DaQ8w");
                         }
                         break;
                     case 1:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("HDWXU45S2o8");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("y_L1zD0b5uU");
                         }
                         break;
                     case 2:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("ZJnvaEF5K4Y");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("fx2X0i-1JWQ");
                         }
                         break;
                     case 3:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("QzDbPcFaYXU");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("K8GeEp8ReOQ");
                         }
                         break;
                     case 4:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("aLDSHfvPCtA");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("_fddxui9y0U");
                         }
                         break;
                     case 5:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("x42bMxG5nfc");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("4UbEDUbucrI");
                         }
                         break;
                     case 6:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("vK_-Mk8_GzI");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("XT9VWW-gNes");
                         }
                         break;
                     case 7:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("Q760D8AJr0Q");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("96yaX5uFMSg");
                         }
                         break;
                     case 8:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("3GspVyLttvo");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("M04ZwnHObCA");
                         }
                         break;
                     case 9:
-                        if (Locale.getDefault().getLanguage().equals("el")){
+                        if (Locale.getDefault().getLanguage().equals("el")) {
                             youTubePlayer.loadVideo("M7q256fneZs");
-                        }else {
+                        } else {
                             youTubePlayer.loadVideo("rKF-fAXHUYg");
                         }
                         break;

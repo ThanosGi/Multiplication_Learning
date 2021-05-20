@@ -59,4 +59,5 @@
     <string name="name">Όνομα</string>
     <string name="prev">Προηγ</string>
     <string name="next">Επόμ</string>
+    <string name="must_complete">Πρέπει να τελείωσεις το τέστ πρώτα</string>
 </resources>

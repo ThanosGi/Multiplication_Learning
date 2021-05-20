@@ -1,13 +1,13 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,8 +21,8 @@ public class SignUpStudentActivity extends FullScreen {
     private FirebaseAuth mAuth;
     EditText username;
     EditText passphrase;
-    EditText classid;
-    Context context=this;
+    EditText class_id;
+    Context context = this;
     FirebaseFirestore db_exists = FirebaseFirestore.getInstance();
     FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
 
@@ -34,9 +34,9 @@ public class SignUpStudentActivity extends FullScreen {
         setContentView(R.layout.activity_sign_up_student);
         mAuth = FirebaseAuth.getInstance();
 
-        username=findViewById(R.id.et_username);
-        passphrase=findViewById(R.id.et_passphrase);
-        classid=findViewById(R.id.et_classid);
+        username = findViewById(R.id.et_username);
+        passphrase = findViewById(R.id.et_passphrase);
+        class_id = findViewById(R.id.et_classid);
     }
 
     @Override
@@ -47,25 +47,25 @@ public class SignUpStudentActivity extends FullScreen {
         }
     }
 
-    public void sign_up_students(View view){
-        try{
+    public void sign_up_students(View view) {
+        try {
             db_exists.collection("classes")
-                .whereEqualTo(classid.getText().toString(), true)
-                .get()
+                    .whereEqualTo(class_id.getText().toString(), true)
+                    .get()
                     .addOnSuccessListener(found -> {
-                        if (found.getDocuments().isEmpty()){
-                            Toast.makeText(context,getString(R.string.class_does_not_exist),Toast.LENGTH_LONG).show();
-                        }else{
+                        if (found.getDocuments().isEmpty()) {
+                            Toast.makeText(context, getString(R.string.class_does_not_exist), Toast.LENGTH_LONG).show();
+                        } else {
                             create_account();
                         }
                     });
 
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void create_account(){
+    private void create_account() {
         mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
@@ -78,13 +78,14 @@ public class SignUpStudentActivity extends FullScreen {
                     }
                 });
     }
-    private void updateUI(FirebaseUser account){
-        if(account != null) {
+
+    private void updateUI(FirebaseUser account) {
+        if (account != null) {
 
             // Create a new user with a first, middle, and last name
             Map<String, Object> user = new HashMap<>();
             user.put("username", username.getText().toString());
-            user.put("classId", classid.getText().toString());
+            user.put("classId", class_id.getText().toString());
             user.put("progress", "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"test1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"test2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"test3\":{\"success\":0},\"9\":{\"success\":0},\"finalTest\":{\"success\":0}}");
 
             // Add a new document with a generated ID
@@ -93,12 +94,13 @@ public class SignUpStudentActivity extends FullScreen {
                     .set(user)
                     .addOnSuccessListener(aVoid -> {
                         String from = getIntent().getStringExtra("from");
-                        if(from.equals("CreateAccountActivity")){
+                        if (from.equals("CreateAccountActivity")) {
                             Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
                             startActivity(new Intent(context, LessonsActivity.class));
-                        }else{
+                        } else {
                             Toast.makeText(context, getString(R.string.success_student), Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(context, TeacherActivity.class));}
+                            startActivity(new Intent(context, TeacherActivity.class));
+                        }
                     }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }
     }

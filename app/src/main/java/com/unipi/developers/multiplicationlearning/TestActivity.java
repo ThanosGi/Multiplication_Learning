@@ -1,17 +1,16 @@
 package com.unipi.developers.multiplicationlearning;
 
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,19 +25,19 @@ import java.util.Objects;
 import java.util.Random;
 
 public class TestActivity extends FullScreen {
-    final int zeroID=R.drawable.zero, oneID=R.drawable.one, twoID=R.drawable.two, threeID=R.drawable.three, fourID=R.drawable.four, fiveID=R.drawable.five, sixID=R.drawable.six, sevenID=R.drawable.seven, eightID=R.drawable.eight, nineID=R.drawable.nine;
-    ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2,  page3, page4, page5, page6, page7, page8, page9;
+    final int zeroID = R.drawable.zero, oneID = R.drawable.one, twoID = R.drawable.two, threeID = R.drawable.three, fourID = R.drawable.four, fiveID = R.drawable.five, sixID = R.drawable.six, sevenID = R.drawable.seven, eightID = R.drawable.eight, nineID = R.drawable.nine;
+    ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2, page3, page4, page5, page6, page7, page8, page9;
     Button true1, true2, true3, false1, false2, false3;
     int random, random2, rUnit, rUnit2, id, mul, curPage;
     String from;
     String[] result;
 
     private FirebaseAuth mAuth;
-    FirebaseFirestore db= FirebaseFirestore.getInstance();
-    Context context=this;
-    private int score=0;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    Context context = this;
+    private int score = 0;
     int last_score;
-    Boolean anwser1,anwser2,anwser3;
+    Boolean answer1, answer2, answer3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +76,9 @@ public class TestActivity extends FullScreen {
         num5 = findViewById(R.id.num5);
         num6 = findViewById(R.id.num6);
 
-        curPage = getIntent().getIntExtra("page",1);
+        curPage = getIntent().getIntExtra("page", 1);
         from = getIntent().getStringExtra("from");
-        last_score=getIntent().getIntExtra("old_score",0);
+        last_score = getIntent().getIntExtra("old_score", 0);
 
         //here it checks which test it is comes from to dynamically generate the numbers
         switch (from) {
@@ -141,42 +140,42 @@ public class TestActivity extends FullScreen {
 
         next.setOnClickListener(v -> {
             Intent intent;
-            if((true1.getBackground()==gd && anwser1 || false1.getBackground()==gd && !anwser1) || (true2.getBackground()==gd && anwser2 || false2.getBackground()==gd && !anwser2) ||(true3.getBackground()==gd && anwser3 || false3.getBackground()==gd && !anwser3)){
-                score=10;
+            if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1) || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2) || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
+                score = 10;
             }
 
-            JSONObject jsonObject=new JSONObject();
+            JSONObject jsonObject = new JSONObject();
             JSONObject json_temp;
             try {
                 String temp = getIntent().getStringExtra("json");
                 jsonObject = new JSONObject(temp);
 
-                json_temp= new JSONObject();
-                if(curPage==1){
-                    int last_score=jsonObject.getJSONObject(from).getInt("success");
-                    json_temp.put("success",score);
-                }else if (curPage< 9){
-                    json_temp.put("success",jsonObject.getJSONObject(from).getInt("success")+score);
-                }else if(curPage==9 && last_score<jsonObject.getJSONObject(from).getInt("success")+score){
-                    json_temp.put("success",jsonObject.getJSONObject(from).getInt("success")+score);
-                }else {
-                    json_temp.put("success",last_score);
+                json_temp = new JSONObject();
+                if (curPage == 1) {
+                    last_score = jsonObject.getJSONObject(from).getInt("success");
+                    json_temp.put("success", score);
+                } else if (curPage < 9) {
+                    json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                } else if (curPage == 9 && last_score < jsonObject.getJSONObject(from).getInt("success") + score) {
+                    json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                } else {
+                    json_temp.put("success", last_score);
 
                 }
-                jsonObject.put(from,json_temp);
+                jsonObject.put(from, json_temp);
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            String new_json=jsonObject.toString();
-            if(curPage< 9) {
+            String new_json = jsonObject.toString();
+            if (curPage < 9) {
                 intent = new Intent(TestActivity.this, TestActivity.class);
                 intent.putExtra("from", from);
                 intent.putExtra("json", new_json);
                 intent.putExtra("old_score", last_score);
                 intent.putExtra("page", curPage + 1);
-            }else{
+            } else {
                 Map<String, Object> user = new HashMap<>();
                 user.put("progress", new_json);
 
@@ -189,66 +188,68 @@ public class TestActivity extends FullScreen {
 
             }
             startActivity(intent);
+            if(curPage < 9) overridePendingTransition(0, 0);
+
         });
 
     }
 
     private void lockTimeLine(int curPage) {
         //this function keeps the progress of the test and makes the progress bar
-        switch (curPage){
+        switch (curPage) {
             case 1:
                 break;
             case 2:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 3:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 4:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 5:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 6:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 7:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 8:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page7.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page7.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
             case 9:
-                page1.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page2.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page3.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page4.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page5.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page6.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page7.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
-                page8.setForeground(ContextCompat.getDrawable(this,R.drawable.fence));
+                page1.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page2.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page3.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page4.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page5.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page6.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page7.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
+                page8.setForeground(ContextCompat.getDrawable(this, R.drawable.fence));
                 break;
         }
     }
@@ -268,11 +269,11 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
-            anwser1=false;
+            answer1 = false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result1_num1, result1_num2);
         } else {
-            anwser1=true;
+            answer1 = true;
             fillTheIcons(mul, result1_num1, result1_num2);
         }
 
@@ -289,11 +290,11 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
-            anwser2=false;
+            answer2 = false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result2_num1, result2_num2);
         } else {
-            anwser2=true;
+            answer2 = true;
             fillTheIcons(mul, result2_num1, result2_num2);
         }
 
@@ -310,16 +311,16 @@ public class TestActivity extends FullScreen {
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
-            anwser3=false;
+            answer3 = false;
             random2 = new Random().nextInt(rUnit2);
             fillTheIcons(random2, result3_num1, result3_num2);
         } else {
-            anwser3=true;
+            answer3 = true;
             fillTheIcons(mul, result3_num1, result3_num2);
         }
     }
 
-    public void fillTheIcons(int number, ImageView image1, ImageView image2){
+    public void fillTheIcons(int number, ImageView image1, ImageView image2) {
         //this function decides about the result of the multiplication, to put the wrong or the correct answer
         result = String.valueOf(number).split("");
         if (result[0].equals("")) {
@@ -349,7 +350,7 @@ public class TestActivity extends FullScreen {
 
     private int getTranslation(int random) {
         //this function translates the numbers into image id of specific number
-        switch (random){
+        switch (random) {
             case 0:
                 return zeroID;
             case 1:
@@ -385,6 +386,6 @@ public class TestActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
-
+        Toast.makeText(this,getString(R.string.must_complete),Toast.LENGTH_LONG).show();
     }
 }

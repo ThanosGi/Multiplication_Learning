@@ -1,9 +1,6 @@
 package com.unipi.developers.multiplicationlearning;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatDelegate;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import androidx.appcompat.app.AppCompatDelegate;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,7 +24,7 @@ public class SignUpTeacherActivity extends FullScreen {
     EditText password;
     EditText password2;
 
-    Context context=this;
+    Context context = this;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -37,9 +34,9 @@ public class SignUpTeacherActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_teacher);
         mAuth = FirebaseAuth.getInstance();
-        email=findViewById(R.id.et_email);
-        password=findViewById(R.id.et_password);
-        password2=findViewById(R.id.et_password2);
+        email = findViewById(R.id.et_email);
+        password = findViewById(R.id.et_password);
+        password2 = findViewById(R.id.et_password2);
     }
 
     @Override
@@ -50,9 +47,9 @@ public class SignUpTeacherActivity extends FullScreen {
         }
     }
 
-    public void sign_up_teacher(View view){
-        try{
-            if(password.getText().toString().equals(password2.getText().toString())){
+    public void sign_up_teacher(View view) {
+        try {
+            if (password.getText().toString().equals(password2.getText().toString())) {
                 mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()) {
@@ -65,17 +62,17 @@ public class SignUpTeacherActivity extends FullScreen {
                             }
                         });
 
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), getString(R.string.pass_not_match), Toast.LENGTH_SHORT).show();
             }
-        }catch (IllegalArgumentException exception){
+        } catch (IllegalArgumentException exception) {
             Toast.makeText(getApplicationContext(), getString(R.string.empty_error), Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void updateUI(FirebaseUser account){
+    private void updateUI(FirebaseUser account) {
 
-        if(account != null) {
+        if (account != null) {
 
             // Create a new user with a first, middle, and last name
             Map<String, Object> user = new HashMap<>();

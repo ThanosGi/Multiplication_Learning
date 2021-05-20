@@ -37,6 +37,7 @@ public class CustomScrollView extends ScrollView {
             return false;
         }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (isEnableScrolling()) {
