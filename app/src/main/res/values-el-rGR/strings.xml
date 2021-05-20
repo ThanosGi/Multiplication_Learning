@@ -34,12 +34,14 @@
     <string name="review1">Τεστ 1</string>
     <string name="review2">Τεστ 2</string>
     <string name="review3">Τεστ 3</string>
+    <string name="reviews">Τεστς</string>
     <string name="final_review">Τελικό Τεστ</string>
     <string name="help">Βοήθεια</string>
     <string name="hello_teacher_name">Γεια σας </string>
     <string name="my_classes">Οι τάξεις μου</string>
     <string name="create_class">Δημιουργία Τάξης</string>
     <string name="student_stats">Στατιστικά Μαθητών</string>
+    <string name="lessons">Μαθήματα</string>
     <string name="create_students">Δημιουργία Μαθητή</string>
     <string name="logout_success">Αποσυνδεθήκατε με επιτυχία</string>
     <string name="class_name">Όνομα Τάξης</string>
@@ -54,4 +56,7 @@
     <string name="class_does_not_exist">Αυτή η τάξη δεν υπάρχει!</string>
     <string name="empty_error">Τα πεδία είναι κενά</string>
     <string name="progress">Η πρόοδος σας αποθηκεύτηκε επιτυχώς</string>
+    <string name="name">Όνομα</string>
+    <string name="prev">Προηγ</string>
+    <string name="next">Επόμ</string>
 </resources>

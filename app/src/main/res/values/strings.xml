@@ -34,12 +34,14 @@
     <string name="review1">Review 1</string>
     <string name="review2">Review 2</string>
     <string name="review3">Review 3</string>
+    <string name="reviews">Reviews</string>
     <string name="final_review">Final Review</string>
     <string name="help">Help</string>
     <string name="hello_teacher_name">Hello</string>
     <string name="my_classes">My Classes</string>
     <string name="create_class">Create Class</string>
     <string name="student_stats">Student Stats</string>
+    <string name="lessons">Lessons</string>
     <string name="create_students">Create Student</string>
     <string name="logout_success">You have successfully logged out</string>
     <string name="class_name">Class Name</string>
@@ -53,4 +55,7 @@
     <string name="class_failed">The creation of the class failed.</string>
     <string name="class_does_not_exist">That class does not exists!</string>
     <string name="progress">Your progress saved successfully</string>
+    <string name="name">Name</string>
+    <string name="prev">Prev</string>
+    <string name="next">Next</string>
 </resources>
