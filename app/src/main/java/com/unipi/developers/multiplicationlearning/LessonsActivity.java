@@ -25,7 +25,7 @@ public class LessonsActivity extends FullScreen {
     ImageView help;
     CardView card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, cardTest1, cardTest2, cardTest3, cardFinalTest;
     TextView txt_rate0, txt_rate1, txt_rate2, txt_rate3, txt_rate4, txt_rate5, txt_rate6, txt_rate7, txt_rate8, txt_rate9, txt_rater1, txt_rater2, txt_rater3, txt_ratefr;
-    TextView txt_des_rate0, txt_des_rate1, txt_des_rate2, txt_des_rate3, txt_des_rate4, txt_des_rate5, txt_des_rate6, txt_des_rate7, txt_des_rate8, txt_des_rate9, txt_des_rater1, txt_des_rater2, txt_des_rater3, txt_des_ratefr;
+    TextView logout,txt_des_rate0, txt_des_rate1, txt_des_rate2, txt_des_rate3, txt_des_rate4, txt_des_rate5, txt_des_rate6, txt_des_rate7, txt_des_rate8, txt_des_rate9, txt_des_rater1, txt_des_rater2, txt_des_rater3, txt_des_ratefr;
     int zero_lesson, one_lesson, two_lesson, three_lesson, four_lesson, five_lesson, six_lesson, seven_lesson, eight_lesson, nine_lesson, review1, review2, review3, final_review;
     String json_data;
 
@@ -107,8 +107,16 @@ public class LessonsActivity extends FullScreen {
         txt_des_ratefr=findViewById(R.id.txt_des_ratefr);
 
         help = findViewById(R.id.btn_help);
+        logout = findViewById(R.id.btn_log_out);
         help.setOnClickListener(v->{
 
+        });
+
+        logout.setOnClickListener(v -> {
+            finish();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(LessonsActivity.this, LogInActivity.class));
+            Toast.makeText(LessonsActivity.this, getString(R.string.logout_success), Toast.LENGTH_LONG).show();
         });
 
         if (!getIntent().getStringExtra("json").equals("")) {
@@ -406,9 +414,6 @@ public class LessonsActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
-        finish();
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this, LogInActivity.class));
-        Toast.makeText(this, getString(R.string.logout_success), Toast.LENGTH_LONG).show();
+
     }
 }

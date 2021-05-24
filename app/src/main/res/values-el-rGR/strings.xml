@@ -56,8 +56,16 @@
     <string name="class_does_not_exist">Αυτή η τάξη δεν υπάρχει!</string>
     <string name="empty_error">Τα πεδία είναι κενά</string>
     <string name="progress">Η πρόοδος σας αποθηκεύτηκε επιτυχώς</string>
+    <string name="warning">Πρέπει να απαντήσετε σε όλες τις ερωτήσεις</string>
+    <string name="perfect"> Θαυμάσια [A\'] </string>
+    <string name="excellent"> Εξαιρετικά [A] </string>
+    <string name="good"> Καλά [B] </string>
+    <string name="poor"> Άσχημα [C] </string>
+    <string name="zeroProgress"> 0% </string>
+    <string name="noTitle"> - </string>
     <string name="name">Όνομα</string>
     <string name="prev">Προηγ</string>
     <string name="next">Επόμ</string>
     <string name="must_complete">Πρέπει να τελείωσεις το τέστ πρώτα</string>
+    <string name="logout">Αποσύνδεση</string>
 </resources>

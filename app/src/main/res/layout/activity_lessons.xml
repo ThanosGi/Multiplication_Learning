@@ -11,6 +11,19 @@
     android:orientation="vertical"
     android:weightSum="10">
 
+    <TextView
+        android:id="@+id/btn_log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/riffic"
+        android:textSize="24sp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"/>
+
     <ImageView
         android:id="@+id/btn_help"
         android:layout_width="wrap_content"
@@ -102,7 +115,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -113,7 +126,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -180,7 +193,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -191,7 +204,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -258,7 +271,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -269,7 +282,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -336,7 +349,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -347,7 +360,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -418,7 +431,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -429,7 +442,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -496,7 +509,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -507,7 +520,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -574,7 +587,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -585,7 +598,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -652,7 +665,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -663,7 +676,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -734,7 +747,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -745,7 +758,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -812,7 +825,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -823,7 +836,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -890,7 +903,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -901,7 +914,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -968,7 +981,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -979,7 +992,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -1051,7 +1064,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -1062,7 +1075,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -1129,7 +1142,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="100%"
+                                android:text="@string/zeroProgress"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />
@@ -1140,7 +1153,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/riffic"
-                                android:text="Excellent [A]"
+                                android:text="@string/noTitle"
                                 android:textColor="@color/green"
                                 android:textSize="24sp"
                                 android:textStyle="bold" />

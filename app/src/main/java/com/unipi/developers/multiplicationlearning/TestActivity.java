@@ -28,6 +28,7 @@ public class TestActivity extends FullScreen {
     final int zeroID = R.drawable.zero, oneID = R.drawable.one, twoID = R.drawable.two, threeID = R.drawable.three, fourID = R.drawable.four, fiveID = R.drawable.five, sixID = R.drawable.six, sevenID = R.drawable.seven, eightID = R.drawable.eight, nineID = R.drawable.nine;
     ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2, page3, page4, page5, page6, page7, page8, page9;
     Button true1, true2, true3, false1, false2, false3;
+    boolean bTrue1=false, bTrue2=false, bTrue3=false, bFalse1=false, bFalse2=false, bFalse3=false;
     int random, random2, rUnit, rUnit2, id, mul, curPage;
     String from;
     String[] result;
@@ -108,89 +109,104 @@ public class TestActivity extends FullScreen {
         gd.setStroke(2, Color.BLUE);
 
         true1.setOnClickListener(v -> {
+            bTrue1 = true;
+            bFalse1 = false;
             true1.setBackground(gd);
             false1.setBackgroundColor(Color.WHITE);
         });
 
         false1.setOnClickListener(v -> {
+            bTrue1 = false;
+            bFalse1 = true;
             false1.setBackground(gd);
             true1.setBackgroundColor(Color.WHITE);
         });
 
         true2.setOnClickListener(v -> {
+            bTrue2 = true;
+            bFalse2 = false;
             true2.setBackground(gd);
             false2.setBackgroundColor(Color.WHITE);
         });
 
 
         false2.setOnClickListener(v -> {
+            bTrue2 = false;
+            bFalse2 = true;
             false2.setBackground(gd);
             true2.setBackgroundColor(Color.WHITE);
         });
 
         true3.setOnClickListener(v -> {
+            bTrue3 = true;
+            bFalse3 = false;
             true3.setBackground(gd);
             false3.setBackgroundColor(Color.WHITE);
         });
 
         false3.setOnClickListener(v -> {
+            bTrue3 = false;
+            bFalse3 = true;
             false3.setBackground(gd);
             true3.setBackgroundColor(Color.WHITE);
         });
 
         next.setOnClickListener(v -> {
-            Intent intent;
-            if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1) || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2) || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
-                score = 10;
-            }
+            if( !((bTrue1 || bFalse1) && (bTrue2 || bFalse2) && (bTrue3 || bFalse3)) ){
+                Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
+            }else{
+                Intent intent;
+                if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1) || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2) || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
+                    score = 10;
+                }
 
-            JSONObject jsonObject = new JSONObject();
-            JSONObject json_temp;
-            try {
-                String temp = getIntent().getStringExtra("json");
-                jsonObject = new JSONObject(temp);
+                JSONObject jsonObject = new JSONObject();
+                JSONObject json_temp;
+                try {
+                    String temp = getIntent().getStringExtra("json");
+                    jsonObject = new JSONObject(temp);
 
-                json_temp = new JSONObject();
-                if (curPage == 1) {
-                    last_score = jsonObject.getJSONObject(from).getInt("success");
-                    json_temp.put("success", score);
-                } else if (curPage < 9) {
-                    json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
-                } else if (curPage == 9 && last_score < jsonObject.getJSONObject(from).getInt("success") + score) {
-                    json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                    json_temp = new JSONObject();
+                    if (curPage == 1) {
+                        last_score = jsonObject.getJSONObject(from).getInt("success");
+                        json_temp.put("success", score);
+                    } else if (curPage < 9) {
+                        json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                    } else if (curPage == 9 && last_score < jsonObject.getJSONObject(from).getInt("success") + score) {
+                        json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                    } else {
+                        json_temp.put("success", last_score);
+
+                    }
+                    jsonObject.put(from, json_temp);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                String new_json = jsonObject.toString();
+                if (curPage < 9) {
+                    intent = new Intent(TestActivity.this, TestActivity.class);
+                    intent.putExtra("from", from);
+                    intent.putExtra("json", new_json);
+                    intent.putExtra("old_score", last_score);
+                    intent.putExtra("page", curPage + 1);
                 } else {
-                    json_temp.put("success", last_score);
+                    Map<String, Object> user = new HashMap<>();
+                    user.put("progress", new_json);
+
+                    db.collection("students")
+                            .document(Objects.requireNonNull(mAuth.getUid()))
+                            .set(user, SetOptions.merge())
+                            .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
+                    intent = new Intent(TestActivity.this, LessonsActivity.class);
+                    intent.putExtra("json", new_json);
 
                 }
-                jsonObject.put(from, json_temp);
+                startActivity(intent);
+                if(curPage < 9) overridePendingTransition(0, 0);
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            String new_json = jsonObject.toString();
-            if (curPage < 9) {
-                intent = new Intent(TestActivity.this, TestActivity.class);
-                intent.putExtra("from", from);
-                intent.putExtra("json", new_json);
-                intent.putExtra("old_score", last_score);
-                intent.putExtra("page", curPage + 1);
-            } else {
-                Map<String, Object> user = new HashMap<>();
-                user.put("progress", new_json);
-
-                db.collection("students")
-                        .document(Objects.requireNonNull(mAuth.getUid()))
-                        .set(user, SetOptions.merge())
-                        .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
-                intent = new Intent(TestActivity.this, LessonsActivity.class);
-                intent.putExtra("json", new_json);
-
-            }
-            startActivity(intent);
-            if(curPage < 9) overridePendingTransition(0, 0);
-
-        });
+            }});
 
     }
 
@@ -321,7 +337,7 @@ public class TestActivity extends FullScreen {
     }
 
     public void fillTheIcons(int number, ImageView image1, ImageView image2) {
-        //this function decides about the result of the multiplication, to put the wrong or the correct answer
+        //this function decides about the result of the multiplication, to put a wrong or the correct answer
         result = String.valueOf(number).split("");
         if (result[0].equals("")) {
             if (result.length == 2) {

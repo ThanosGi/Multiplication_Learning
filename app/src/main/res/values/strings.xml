@@ -55,8 +55,16 @@
     <string name="class_failed">The creation of the class failed.</string>
     <string name="class_does_not_exist">That class does not exists!</string>
     <string name="progress">Your progress saved successfully</string>
+    <string name="warning">You must answer at all questions</string>
+    <string name="perfect"> Perfect [A\'] </string>
+    <string name="excellent"> Excellent [A] </string>
+    <string name="good"> Good [B] </string>
+    <string name="poor"> Poor [C] </string>
+    <string name="zeroProgress"> 0% </string>
+    <string name="noTitle"> - </string>
     <string name="name">Name</string>
     <string name="prev">Prev</string>
     <string name="next">Next</string>
     <string name="must_complete">You must complete the test first</string>
+    <string name="logout">Logout</string>
 </resources>

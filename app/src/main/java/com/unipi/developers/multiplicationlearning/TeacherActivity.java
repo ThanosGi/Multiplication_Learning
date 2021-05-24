@@ -2,7 +2,9 @@ package com.unipi.developers.multiplicationlearning;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -12,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class TeacherActivity extends FullScreen {
     ImageView help;
+    TextView logout;
     CardView card_myClasses, card_createClass, card_studentStats, card_createStudent;
 
     @Override
@@ -19,9 +22,19 @@ public class TeacherActivity extends FullScreen {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
+
         help = findViewById(R.id.btn_help);
+        logout = findViewById(R.id.btn_log_out2);
+
         help.setOnClickListener(v->{
 
+        });
+
+        logout.setOnClickListener(v -> {
+            finish();
+            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(TeacherActivity.this, LogInActivity.class));
+            Toast.makeText(TeacherActivity.this, getString(R.string.logout_success), Toast.LENGTH_LONG).show();
         });
 
         card_myClasses = findViewById(R.id.card_teacher_my_classes);
@@ -62,9 +75,5 @@ public class TeacherActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
-        finish();
-        FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(this, LogInActivity.class));
-        Toast.makeText(this, getString(R.string.logout_success), Toast.LENGTH_LONG).show();
     }
 }

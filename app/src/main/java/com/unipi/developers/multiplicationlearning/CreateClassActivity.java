@@ -1,6 +1,7 @@
 package com.unipi.developers.multiplicationlearning;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +64,8 @@ public class CreateClassActivity extends FullScreen {
                 .set(data, SetOptions.merge()).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         Toast.makeText(context, getString(R.string.class_success), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(this, TeacherActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(context, getString(R.string.class_failed), Toast.LENGTH_LONG).show();
                     }

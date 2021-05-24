@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class SignUpStudentActivity extends FullScreen {
     private FirebaseAuth mAuth;
+    FirebaseUser firstUser;
     EditText username;
     EditText passphrase;
     EditText class_id;
@@ -33,6 +34,8 @@ public class SignUpStudentActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_student);
         mAuth = FirebaseAuth.getInstance();
+
+        firstUser = mAuth.getCurrentUser();
 
         username = findViewById(R.id.et_username);
         passphrase = findViewById(R.id.et_passphrase);
@@ -99,6 +102,8 @@ public class SignUpStudentActivity extends FullScreen {
                             startActivity(new Intent(context, LessonsActivity.class));
                         } else {
                             Toast.makeText(context, getString(R.string.success_student), Toast.LENGTH_LONG).show();
+                            mAuth.updateCurrentUser(firstUser);
+                            Toast.makeText(this, mAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(context, TeacherActivity.class));
                         }
                     }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
