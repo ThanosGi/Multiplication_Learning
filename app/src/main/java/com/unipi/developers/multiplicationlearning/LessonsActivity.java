@@ -138,7 +138,6 @@ public class LessonsActivity extends FullScreen {
         }
     }
 
-    @SuppressLint({"SetTextI18n", "ResourceAsColor"})
     private void update_lessons_status() {
 
         JSONObject json;
@@ -164,19 +163,16 @@ public class LessonsActivity extends FullScreen {
         }
         final int num = 80;
 
-        txt_rate0.setText(zero_lesson +"%");
-        if(zero_lesson<50) txt_rate0.setTextColor(R.color.red);
-        if(zero_lesson<80) txt_rate0.setTextColor(R.color.yellow);
+        set_colors(zero_lesson, txt_rate0, txt_des_rate0);
         card0.setOnClickListener(v -> {
             Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
             intent.putExtra("lesson_number", 0);
             intent.putExtra("json", json_data);
             startActivityForResult(intent, 1);
         });
+
         if (zero_lesson >= num) {
-            txt_rate1.setText(one_lesson +"%");
-            if(one_lesson<50) txt_rate1.setTextColor(R.color.red);
-            if(one_lesson<80) txt_rate1.setTextColor(R.color.yellow);
+            set_colors(one_lesson, txt_rate1, txt_des_rate1);
             card1.setEnabled(true);
             card1.setForeground(null);
             card1.setOnClickListener(v -> {
@@ -191,9 +187,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (one_lesson >= num) {
-            txt_rate2.setText(two_lesson +"%");
-            if(two_lesson<50) txt_rate2.setTextColor(R.color.red);
-            if(two_lesson<80) txt_rate2.setTextColor(R.color.yellow);
+            set_colors(two_lesson, txt_rate2, txt_des_rate2);
             card2.setEnabled(true);
             card2.setForeground(null);
             card2.setOnClickListener(v -> {
@@ -208,9 +202,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (two_lesson >= num) {
-            txt_rater1.setText(review1 +"%");
-            if(review1<50) txt_rater1.setTextColor(R.color.red);
-            if(review1<80) txt_rater1.setTextColor(R.color.yellow);
+            set_colors(review1, txt_rater1, txt_des_rater1);
             cardTest1.setEnabled(true);
             cardTest1.setForeground(null);
             cardTest1.setOnClickListener(v -> {
@@ -227,9 +219,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (review1 >= num) {
-            txt_rate3.setText(three_lesson +"%");
-            if(three_lesson<50) txt_rate3.setTextColor(R.color.red);
-            if(three_lesson<80) txt_rate3.setTextColor(R.color.yellow);
+            set_colors(three_lesson, txt_rate3, txt_des_rate3);
             card3.setEnabled(true);
             card3.setForeground(null);
             card3.setOnClickListener(v -> {
@@ -244,9 +234,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (three_lesson >= num) {
-            txt_rate4.setText(four_lesson +"%");
-            if(four_lesson<50) txt_rate4.setTextColor(R.color.red);
-            if(four_lesson<80) txt_rate4.setTextColor(R.color.yellow);
+            set_colors(four_lesson, txt_rate4, txt_des_rate4);
             card4.setEnabled(true);
             card4.setForeground(null);
             card4.setOnClickListener(v -> {
@@ -261,9 +249,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (four_lesson >= num) {
-            txt_rate5.setText(five_lesson +"%");
-            if(five_lesson<50) txt_rate5.setTextColor(R.color.red);
-            if(five_lesson<80) txt_rate5.setTextColor(R.color.yellow);
+            set_colors(five_lesson, txt_rate5, txt_des_rate5);
             card5.setEnabled(true);
             card5.setForeground(null);
             card5.setOnClickListener(v -> {
@@ -278,9 +264,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (five_lesson >= num) {
-            txt_rater2.setText(review2 +"%");
-            if(review2<50) txt_rater2.setTextColor(R.color.red);
-            if(review2<80) txt_rater2.setTextColor(R.color.yellow);
+            set_colors(review2, txt_rater2, txt_des_rater2);
             cardTest2.setEnabled(true);
             cardTest2.setForeground(null);
             cardTest2.setOnClickListener(v -> {
@@ -297,9 +281,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (review2 >= num) {
-            txt_rate6.setText(six_lesson +"%");
-            if(six_lesson<50) txt_rate6.setTextColor(R.color.red);
-            if(six_lesson<80) txt_rate6.setTextColor(R.color.yellow);
+            set_colors(six_lesson, txt_rate6, txt_des_rate6);
             card6.setEnabled(true);
             card6.setForeground(null);
             card6.setOnClickListener(v -> {
@@ -314,9 +296,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (six_lesson >= num) {
-            txt_rate7.setText(seven_lesson +"%");
-            if(seven_lesson<50) txt_rate7.setTextColor(R.color.red);
-            if(seven_lesson<80) txt_rate7.setTextColor(R.color.yellow);
+            set_colors(seven_lesson, txt_rate7, txt_des_rate7);
             card7.setEnabled(true);
             card7.setForeground(null);
             card7.setOnClickListener(v -> {
@@ -331,9 +311,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (seven_lesson >= num) {
-            txt_rate8.setText(eight_lesson +"%");
-            if(eight_lesson<50) txt_rate8.setTextColor(R.color.red);
-            if(eight_lesson<80) txt_rate8.setTextColor(R.color.yellow);
+            set_colors(eight_lesson, txt_rate8, txt_des_rate8);
             card8.setEnabled(true);
             card8.setForeground(null);
             card8.setOnClickListener(v -> {
@@ -348,9 +326,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (eight_lesson >= num) {
-            txt_rater3.setText(review3 +"%");
-            if(review3<50) txt_rater3.setTextColor(R.color.red);
-            if(review3<80) txt_rater3.setTextColor(R.color.yellow);
+            set_colors(review3, txt_rater3, txt_des_rater3);
             cardTest3.setEnabled(true);
             cardTest3.setForeground(null);
             cardTest3.setOnClickListener(v -> {
@@ -367,9 +343,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (review3 >= num) {
-            txt_rate9.setText(nine_lesson +"%");
-            if(nine_lesson<50) txt_rate9.setTextColor(R.color.red);
-            if(nine_lesson<80) txt_rate9.setTextColor(R.color.yellow);
+            set_colors(nine_lesson, txt_rate9, txt_des_rate9);
             card9.setEnabled(true);
             card9.setForeground(null);
             card9.setOnClickListener(v -> {
@@ -384,9 +358,7 @@ public class LessonsActivity extends FullScreen {
         }
 
         if (nine_lesson >= num) {
-            txt_ratefr.setText(final_review +"%");
-            if(final_review<50) txt_ratefr.setTextColor(R.color.red);
-            if(final_review<80) txt_ratefr.setTextColor(R.color.yellow);
+            set_colors(final_review, txt_ratefr, txt_des_ratefr);
             cardFinalTest.setEnabled(true);
             cardFinalTest.setForeground(null);
             cardFinalTest.setOnClickListener(v -> {
@@ -415,5 +387,29 @@ public class LessonsActivity extends FullScreen {
     @Override
     public void onBackPressed() {
 
+    }
+
+    @SuppressLint({"ResourceAsColor", "SetTextI18n"})
+    private void set_colors(int lesson,TextView txt_rate,TextView txt_des_rate){
+        txt_rate.setText(lesson +"%");
+        if(lesson<50) {
+            txt_rate.setTextColor(R.color.red);
+            if(zero_lesson==0){
+                txt_des_rate.setText(getString(R.string.poor));
+            }else{
+                txt_des_rate.setText(getString(R.string.good));
+            }
+            txt_des_rate.setTextColor(R.color.red);
+        }
+        if(lesson<80) {
+            txt_rate.setTextColor(R.color.yellow);
+            txt_des_rate.setText(getString(R.string.excellent));
+            txt_des_rate.setTextColor(R.color.yellow);
+        }
+        if(lesson<=100) {
+            txt_rate.setTextColor(R.color.green);
+            txt_des_rate.setText(getString(R.string.perfect));
+            txt_des_rate.setTextColor(R.color.green);
+        }
     }
 }

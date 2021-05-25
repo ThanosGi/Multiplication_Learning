@@ -20,10 +20,12 @@ import java.util.Objects;
 public class CreateClassActivity extends FullScreen {
     private FirebaseAuth mAuth;
     Button create;
-    EditText classid, classname;
+    EditText class_id, classname;
+    String class_id_as_string;
     Context context = this;
     FirebaseFirestore db_check = FirebaseFirestore.getInstance();
     FirebaseFirestore db_create = FirebaseFirestore.getInstance();
+    FirebaseFirestore db_create_instance = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,16 @@ public class CreateClassActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_class);
         create = findViewById(R.id.btn_createclass);
-        classid = findViewById(R.id.classID);
+        class_id = findViewById(R.id.classID);
         classname = findViewById(R.id.className);
         mAuth = FirebaseAuth.getInstance();
+        class_id_as_string=class_id.getText().toString();
+        class_id_as_string=getIntent().getStringExtra("username")+"_"+class_id_as_string;
 
         create.setOnClickListener(v -> {
-            if (!classid.getText().toString().equals("") && !classname.getText().toString().equals("")) {
+            if (!class_id_as_string.equals("") && !classname.getText().toString().equals("")) {
                 db_check.collection("classes")
-                        .whereEqualTo(classid.getText().toString(), true)
+                        .whereEqualTo(class_id_as_string, true)
                         .get()
                         .addOnSuccessListener(found -> {
                             if (found.getDocuments().isEmpty()) {
@@ -58,11 +62,15 @@ public class CreateClassActivity extends FullScreen {
 
     private void create_class() {
         Map<String, Object> data = new HashMap<>();
-        data.put(classid.getText().toString(), classname.getText().toString());
+        data.put(class_id_as_string, classname.getText().toString());
 
         db_create.collection("teachers").document(Objects.requireNonNull(mAuth.getUid()))
                 .set(data, SetOptions.merge()).addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
+                        Map<String, Object> glob_class = new HashMap<>();
+                        glob_class.put(class_id_as_string, true);
+                        db_create_instance.collection("classes").document("kXJy56RB69Jewvnh23Pf").set(glob_class, SetOptions.merge());
+
                         Toast.makeText(context, getString(R.string.class_success), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(this, TeacherActivity.class);
                         startActivity(intent);
@@ -72,9 +80,6 @@ public class CreateClassActivity extends FullScreen {
                 }
         );
 
-        Map<String, Object> glob_class = new HashMap<>();
-        glob_class.put(classid.getText().toString(), true);
-        db_create.collection("classes").document("kXJy56RB69Jewvnh23Pf").set(glob_class, SetOptions.merge());
     }
 
     @Override

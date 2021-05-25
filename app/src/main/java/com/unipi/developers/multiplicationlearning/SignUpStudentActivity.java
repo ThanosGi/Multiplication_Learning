@@ -19,13 +19,13 @@ import java.util.Objects;
 
 public class SignUpStudentActivity extends FullScreen {
     private FirebaseAuth mAuth;
-    FirebaseUser firstUser;
     EditText username;
     EditText passphrase;
     EditText class_id;
     Context context = this;
     FirebaseFirestore db_exists = FirebaseFirestore.getInstance();
     FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
+    String from;
 
 
     @Override
@@ -34,8 +34,6 @@ public class SignUpStudentActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_student);
         mAuth = FirebaseAuth.getInstance();
-
-        firstUser = mAuth.getCurrentUser();
 
         username = findViewById(R.id.et_username);
         passphrase = findViewById(R.id.et_passphrase);
@@ -72,11 +70,13 @@ public class SignUpStudentActivity extends FullScreen {
         mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
+                        if (from.equals("CreateAccountActivity")) {
+                            updateUI(mAuth.getCurrentUser());
+                        }else{
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        }
                     } else {
-                        // If sign in fails, display a message to the user.
                         Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -85,27 +85,18 @@ public class SignUpStudentActivity extends FullScreen {
     private void updateUI(FirebaseUser account) {
         if (account != null) {
 
-            // Create a new user with a first, middle, and last name
             Map<String, Object> user = new HashMap<>();
             user.put("username", username.getText().toString());
             user.put("classId", class_id.getText().toString());
             user.put("progress", "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"test1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"test2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"test3\":{\"success\":0},\"9\":{\"success\":0},\"finalTest\":{\"success\":0}}");
 
-            // Add a new document with a generated ID
             db_auth.collection("students")
                     .document(account.getUid())
                     .set(user)
                     .addOnSuccessListener(aVoid -> {
-                        String from = getIntent().getStringExtra("from");
-                        if (from.equals("CreateAccountActivity")) {
-                            Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
-                            startActivity(new Intent(context, LessonsActivity.class));
-                        } else {
-                            Toast.makeText(context, getString(R.string.success_student), Toast.LENGTH_LONG).show();
-                            mAuth.updateCurrentUser(firstUser);
-                            Toast.makeText(this, mAuth.getCurrentUser().getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(context, TeacherActivity.class));
-                        }
+                        Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(context, LessonsActivity.class));
+
                     }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }
     }

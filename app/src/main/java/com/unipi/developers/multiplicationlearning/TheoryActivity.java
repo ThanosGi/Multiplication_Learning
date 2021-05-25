@@ -37,7 +37,7 @@ public class TheoryActivity extends FullScreen {
     int lesson_number;
     TextView txt_number;
     boolean click_canvas1, click_canvas2, click_canvas3, click_canvas4, click_canvas5, click_canvas6, click_canvas7, click_canvas8, click_canvas9;
-    int score = 1;
+    int score = 0;
     private FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     Context context = this;
@@ -108,6 +108,7 @@ public class TheoryActivity extends FullScreen {
         btn_seeVideo = findViewById(R.id.btn_seeVideo);
 
         btn_seeVideo.setOnClickListener(v -> {
+            score+=1;
             Intent intent = new Intent(TheoryActivity.this, VideoActivity.class);
             intent.putExtra("lesson_number", lesson_number);
             startActivity(intent);
