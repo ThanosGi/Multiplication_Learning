@@ -813,6 +813,15 @@
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
+                <ImageView
+                    android:id="@+id/btn_next_theory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/next_button"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="30dp"
+                    android:layout_marginBottom="2dp"/>
+
             </LinearLayout>
         </com.unipi.developers.multiplicationlearning.CustomScrollView>
 

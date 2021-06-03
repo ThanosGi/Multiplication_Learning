@@ -29,7 +29,7 @@ public class TheoryActivity extends FullScreen {
 
     CustomScrollView scrollView;
     RelativeLayout relativeLayout;
-    ImageView clear1, clear2, clear3, clear4, clear5, clear6, clear7, clear8, clear9;
+    ImageView clear1, clear2, clear3, clear4, clear5, clear6, clear7, clear8, clear9, next;
     ImageView img_num1, img_num2, img_num3, img_num4, img_num5, img_num6, img_num7, img_num8, img_num9;
     ImageView img_res1_1, img_res2_1, img_res2_2, img_res3_1, img_res3_2, img_res4_1, img_res4_2, img_res5_1, img_res5_2, img_res6_1, img_res6_2, img_res7_1, img_res7_2, img_res8_1, img_res8_2, img_res9_1, img_res9_2;
     MyCanvas canvas1, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7, canvas8, canvas9;
@@ -69,6 +69,7 @@ public class TheoryActivity extends FullScreen {
         clear7 = findViewById(R.id.clear7);
         clear8 = findViewById(R.id.clear8);
         clear9 = findViewById(R.id.clear9);
+        next = findViewById(R.id.btn_next_theory);
         canvas1 = findViewById(R.id.canvas1);
         canvas2 = findViewById(R.id.canvas2);
         canvas3 = findViewById(R.id.canvas3);
@@ -112,6 +113,15 @@ public class TheoryActivity extends FullScreen {
             Intent intent = new Intent(TheoryActivity.this, VideoActivity.class);
             intent.putExtra("lesson_number", lesson_number);
             startActivity(intent);
+        });
+
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TheoryActivity.this, MiniTestActivity.class);
+                intent.putExtra("from", lesson_number);
+                startActivityForResult(intent, 1);
+            }
         });
 
 
