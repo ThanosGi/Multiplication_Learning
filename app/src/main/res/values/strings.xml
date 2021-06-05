@@ -67,4 +67,6 @@
     <string name="next">Next</string>
     <string name="must_complete">You must complete the test first</string>
     <string name="logout">Logout</string>
+    <string name="back_press_exit">Press back again to exit</string>
+    <string name="lesson_continue">You must score higher to continue to the next lesson</string>
 </resources>

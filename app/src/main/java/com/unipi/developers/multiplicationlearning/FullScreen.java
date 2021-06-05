@@ -1,6 +1,7 @@
 package com.unipi.developers.multiplicationlearning;
 
 import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class FullScreen extends AppCompatActivity {

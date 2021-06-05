@@ -90,8 +90,8 @@ public class LogInActivity extends FullScreen {
                     .addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot ignored : Objects.requireNonNull(task.getResult())) {
-                                Intent intent=new Intent(context, TeacherActivity.class);
-                                intent.putExtra("username",username.getText().toString().split("@")[0]);
+                                Intent intent = new Intent(context, TeacherActivity.class);
+                                intent.putExtra("username", username.getText().toString().split("@")[0]);
                                 startActivity(intent);
                             }
                         }

@@ -29,7 +29,6 @@ public class SignUpStudentActivity extends FullScreen {
     Context context = this;
     FirebaseFirestore db_exists = FirebaseFirestore.getInstance();
     FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
-    String from;
     ArrayList<String> classes;
 
 
@@ -43,15 +42,15 @@ public class SignUpStudentActivity extends FullScreen {
         username = findViewById(R.id.et_username);
         passphrase = findViewById(R.id.et_passphrase);
         class_id = findViewById(R.id.et_classid);
-        classes= new ArrayList<>();
+        classes = new ArrayList<>();
 
         db_exists.collection("classes")
                 .document("kXJy56RB69Jewvnh23Pf")
                 .get()
                 .addOnCompleteListener(found -> {
-                    DocumentSnapshot temp=found.getResult();
-                    for (String data: Objects.requireNonNull(temp.getData()).keySet()) {
-                        if(!data.equals("0000")) classes.add(data);
+                    DocumentSnapshot temp = found.getResult();
+                    for (String data : Objects.requireNonNull(temp.getData()).keySet()) {
+                        if (!data.equals("0000")) classes.add(data);
                     }
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, classes);
                     class_id.setSelection(0);
@@ -71,9 +70,9 @@ public class SignUpStudentActivity extends FullScreen {
 
     public void sign_up_students(View view) {
         try {
-            if(!classes.contains(class_id.getSelectedItem().toString())){
+            if (!classes.contains(class_id.getSelectedItem().toString())) {
                 Toast.makeText(context, getString(R.string.class_does_not_exist), Toast.LENGTH_LONG).show();
-            }else{
+            } else {
                 create_account();
             }
         } catch (IllegalArgumentException exception) {
@@ -85,12 +84,8 @@ public class SignUpStudentActivity extends FullScreen {
         mAuth.createUserWithEmailAndPassword(username.getText().toString(), passphrase.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
-                        if (from.equals("CreateAccountActivity")) {
-                            updateUI(mAuth.getCurrentUser());
-                        }else{
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        }
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        updateUI(user);
                     } else {
                         Toast.makeText(getApplicationContext(), Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -110,7 +105,7 @@ public class SignUpStudentActivity extends FullScreen {
                     .set(user)
                     .addOnSuccessListener(aVoid -> {
                         Toast.makeText(context, getString(R.string.success_sign_in), Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(context, LessonsActivity.class));
+                        startActivity(new Intent(context, LessonsActivity.class).putExtra("json", (String) user.get("progress")));
 
                     }).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
         }

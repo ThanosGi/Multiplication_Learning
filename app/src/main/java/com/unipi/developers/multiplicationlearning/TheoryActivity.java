@@ -1,29 +1,14 @@
 package com.unipi.developers.multiplicationlearning;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
-
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.SetOptions;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 
 public class TheoryActivity extends FullScreen {
 
@@ -37,15 +22,7 @@ public class TheoryActivity extends FullScreen {
     int lesson_number;
     TextView txt_number;
     boolean click_canvas1, click_canvas2, click_canvas3, click_canvas4, click_canvas5, click_canvas6, click_canvas7, click_canvas8, click_canvas9;
-    int score = 0;
-    private FirebaseAuth mAuth;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    Context context = this;
-    String json_data;
 
-    FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-            .setPersistenceEnabled(true)
-            .build();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +30,6 @@ public class TheoryActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theory);
 
-        mAuth = FirebaseAuth.getInstance();
-        db.setFirestoreSettings(settings);
 
         lesson_number = getIntent().getIntExtra("lesson_number", 10);
 
@@ -109,19 +84,16 @@ public class TheoryActivity extends FullScreen {
         btn_seeVideo = findViewById(R.id.btn_seeVideo);
 
         btn_seeVideo.setOnClickListener(v -> {
-            score+=1;
             Intent intent = new Intent(TheoryActivity.this, VideoActivity.class);
             intent.putExtra("lesson_number", lesson_number);
             startActivity(intent);
         });
 
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(TheoryActivity.this, MiniTestActivity.class);
-                intent.putExtra("from", lesson_number);
-                startActivityForResult(intent, 1);
-            }
+        next.setOnClickListener(v -> {
+            Intent intent = new Intent(TheoryActivity.this, MiniTestActivity.class);
+            intent.putExtra("from", lesson_number);
+            intent.putExtra("json", getIntent().getStringExtra("json"));
+            startActivity(intent);
         });
 
 
@@ -130,9 +102,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas1 = false;
         canvas1.setOnClickListener(click -> {
-            if (!click_canvas1) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas1 = true;
         });
@@ -140,9 +109,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas2 = false;
         canvas2.setOnClickListener(click -> {
-            if (!click_canvas2) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas2 = true;
         });
@@ -150,9 +116,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas3 = false;
         canvas3.setOnClickListener(click -> {
-            if (!click_canvas3) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas3 = true;
         });
@@ -160,9 +123,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas4 = false;
         canvas4.setOnClickListener(click -> {
-            if (!click_canvas4) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas4 = true;
         });
@@ -170,9 +130,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas5 = false;
         canvas5.setOnClickListener(click -> {
-            if (!click_canvas5) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas5 = true;
         });
@@ -180,9 +137,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas6 = false;
         canvas6.setOnClickListener(click -> {
-            if (!click_canvas6) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas6 = true;
         });
@@ -190,9 +144,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas7 = false;
         canvas7.setOnClickListener(click -> {
-            if (!click_canvas7) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas7 = true;
         });
@@ -200,9 +151,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas8 = false;
         canvas8.setOnClickListener(click -> {
-            if (!click_canvas8) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas8 = true;
         });
@@ -210,9 +158,6 @@ public class TheoryActivity extends FullScreen {
 
         click_canvas9 = false;
         canvas9.setOnClickListener(click -> {
-            if (!click_canvas9) {
-                score += 1;
-            }
             scrollView.setEnableScrolling(false);
             click_canvas9 = true;
         });
@@ -522,39 +467,4 @@ public class TheoryActivity extends FullScreen {
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        save_data();
-        Intent data = new Intent();
-        data.putExtra("json", json_data);
-        setResult(Activity.RESULT_OK, data);
-        super.onBackPressed();
-    }
-
-    private void save_data() {
-        JSONObject jsonObject = new JSONObject();
-        JSONObject json_temp;
-        try {
-            json_temp = new JSONObject();
-            json_temp.put("success", score * 10);
-            String temp = getIntent().getStringExtra("json");
-            jsonObject = new JSONObject(temp);
-            if (jsonObject.getJSONObject(String.valueOf(lesson_number)).getInt("success") < score * 10) {
-                jsonObject.put(String.valueOf(lesson_number), json_temp);
-            }
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        json_data = jsonObject.toString();
-
-        Map<String, Object> user = new HashMap<>();
-        user.put("progress", json_data);
-
-        db.collection("students")
-                .document(Objects.requireNonNull(mAuth.getUid()))
-                .set(user, SetOptions.merge())
-                .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
-    }
 }

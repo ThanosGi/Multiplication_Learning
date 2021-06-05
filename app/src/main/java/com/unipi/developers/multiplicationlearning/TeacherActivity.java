@@ -17,6 +17,8 @@ public class TeacherActivity extends FullScreen {
     TextView logout;
     TextView welcome;
     CardView card_myClasses, card_createClass, card_studentStats;
+    private long backPressedTime;
+    private Toast backToast;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -28,8 +30,8 @@ public class TeacherActivity extends FullScreen {
         help = findViewById(R.id.btn_help);
         logout = findViewById(R.id.btn_log_out2);
         welcome = findViewById(R.id.txt_hello_teacher);
-        welcome.setText(getString(R.string.hello_teacher_name)+" "+getIntent().getStringExtra("username"));
-        help.setOnClickListener(v->{
+        welcome.setText(getString(R.string.hello_teacher_name) + " " + getIntent().getStringExtra("username"));
+        help.setOnClickListener(v -> {
 
         });
 
@@ -51,7 +53,7 @@ public class TeacherActivity extends FullScreen {
 
         card_createClass.setOnClickListener(v -> {
             Intent intent = new Intent(TeacherActivity.this, CreateClassActivity.class);
-            intent.putExtra("username",getIntent().getStringExtra("username"));
+            intent.putExtra("username", getIntent().getStringExtra("username"));
             startActivity(intent);
         });
 
@@ -72,5 +74,13 @@ public class TeacherActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            finishAffinity();
+        } else {
+            backToast = Toast.makeText(getApplicationContext(), getString(R.string.back_press_exit), Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

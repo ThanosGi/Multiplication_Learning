@@ -1,8 +1,8 @@
 package com.unipi.developers.multiplicationlearning;
 
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,9 +25,11 @@ public class LessonsActivity extends FullScreen {
     ImageView help;
     CardView card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, cardTest1, cardTest2, cardTest3, cardFinalTest;
     TextView txt_rate0, txt_rate1, txt_rate2, txt_rate3, txt_rate4, txt_rate5, txt_rate6, txt_rate7, txt_rate8, txt_rate9, txt_rater1, txt_rater2, txt_rater3, txt_ratefr;
-    TextView logout,txt_des_rate0, txt_des_rate1, txt_des_rate2, txt_des_rate3, txt_des_rate4, txt_des_rate5, txt_des_rate6, txt_des_rate7, txt_des_rate8, txt_des_rate9, txt_des_rater1, txt_des_rater2, txt_des_rater3, txt_des_ratefr;
+    TextView logout, txt_des_rate0, txt_des_rate1, txt_des_rate2, txt_des_rate3, txt_des_rate4, txt_des_rate5, txt_des_rate6, txt_des_rate7, txt_des_rate8, txt_des_rate9, txt_des_rater1, txt_des_rater2, txt_des_rater3, txt_des_ratefr;
     int zero_lesson, one_lesson, two_lesson, three_lesson, four_lesson, five_lesson, six_lesson, seven_lesson, eight_lesson, nine_lesson, review1, review2, review3, final_review;
     String json_data;
+    private long backPressedTime;
+    private Toast backToast;
 
     FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
@@ -46,69 +48,70 @@ public class LessonsActivity extends FullScreen {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lessons);
+
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
         db = FirebaseFirestore.getInstance();
         db.setFirestoreSettings(settings);
 
         card0 = findViewById(R.id.card0);
-        txt_rate0=findViewById(R.id.txt_rate0);
-        txt_des_rate0=findViewById(R.id.txt_des_rate0);
+        txt_rate0 = findViewById(R.id.txt_rate0);
+        txt_des_rate0 = findViewById(R.id.txt_des_rate0);
 
         card1 = findViewById(R.id.card1);
-        txt_rate1=findViewById(R.id.txt_rate1);
-        txt_des_rate1=findViewById(R.id.txt_des_rate1);
+        txt_rate1 = findViewById(R.id.txt_rate1);
+        txt_des_rate1 = findViewById(R.id.txt_des_rate1);
 
         card2 = findViewById(R.id.card2);
-        txt_rate2=findViewById(R.id.txt_rate2);
-        txt_des_rate2=findViewById(R.id.txt_des_rate2);
+        txt_rate2 = findViewById(R.id.txt_rate2);
+        txt_des_rate2 = findViewById(R.id.txt_des_rate2);
 
         card3 = findViewById(R.id.card3);
-        txt_rate3=findViewById(R.id.txt_rate3);
-        txt_des_rate3=findViewById(R.id.txt_des_rate3);
+        txt_rate3 = findViewById(R.id.txt_rate3);
+        txt_des_rate3 = findViewById(R.id.txt_des_rate3);
 
         card4 = findViewById(R.id.card4);
-        txt_rate4=findViewById(R.id.txt_rate4);
-        txt_des_rate4=findViewById(R.id.txt_des_rate4);
+        txt_rate4 = findViewById(R.id.txt_rate4);
+        txt_des_rate4 = findViewById(R.id.txt_des_rate4);
 
         card5 = findViewById(R.id.card5);
-        txt_rate5=findViewById(R.id.txt_rate5);
-        txt_des_rate5=findViewById(R.id.txt_des_rate5);
+        txt_rate5 = findViewById(R.id.txt_rate5);
+        txt_des_rate5 = findViewById(R.id.txt_des_rate5);
 
         card6 = findViewById(R.id.card6);
-        txt_rate6=findViewById(R.id.txt_rate6);
-        txt_des_rate6=findViewById(R.id.txt_des_rate6);
+        txt_rate6 = findViewById(R.id.txt_rate6);
+        txt_des_rate6 = findViewById(R.id.txt_des_rate6);
 
         card7 = findViewById(R.id.card7);
-        txt_rate7=findViewById(R.id.txt_rate7);
-        txt_des_rate7=findViewById(R.id.txt_des_rate7);
+        txt_rate7 = findViewById(R.id.txt_rate7);
+        txt_des_rate7 = findViewById(R.id.txt_des_rate7);
 
         card8 = findViewById(R.id.card8);
-        txt_rate8=findViewById(R.id.txt_rate8);
-        txt_des_rate8=findViewById(R.id.txt_des_rate8);
+        txt_rate8 = findViewById(R.id.txt_rate8);
+        txt_des_rate8 = findViewById(R.id.txt_des_rate8);
 
         card9 = findViewById(R.id.card9);
-        txt_rate9=findViewById(R.id.txt_rate9);
-        txt_des_rate9=findViewById(R.id.txt_des_rate9);
+        txt_rate9 = findViewById(R.id.txt_rate9);
+        txt_des_rate9 = findViewById(R.id.txt_des_rate9);
 
         cardTest1 = findViewById(R.id.test1);
-        txt_rater1=findViewById(R.id.txt_rater1);
-        txt_des_rater1=findViewById(R.id.txt_des_rater1);
+        txt_rater1 = findViewById(R.id.txt_rater1);
+        txt_des_rater1 = findViewById(R.id.txt_des_rater1);
 
         cardTest2 = findViewById(R.id.test2);
-        txt_rater2=findViewById(R.id.txt_rater2);
-        txt_des_rater2=findViewById(R.id.txt_des_rater2);
+        txt_rater2 = findViewById(R.id.txt_rater2);
+        txt_des_rater2 = findViewById(R.id.txt_des_rater2);
 
         cardTest3 = findViewById(R.id.test3);
-        txt_rater3=findViewById(R.id.txt_rater3);
-        txt_des_rater3=findViewById(R.id.txt_des_rater3);
+        txt_rater3 = findViewById(R.id.txt_rater3);
+        txt_des_rater3 = findViewById(R.id.txt_des_rater3);
 
         cardFinalTest = findViewById(R.id.finalTest);
-        txt_ratefr=findViewById(R.id.txt_ratefr);
-        txt_des_ratefr=findViewById(R.id.txt_des_ratefr);
+        txt_ratefr = findViewById(R.id.txt_ratefr);
+        txt_des_ratefr = findViewById(R.id.txt_des_ratefr);
 
         help = findViewById(R.id.btn_help);
         logout = findViewById(R.id.btn_log_out);
-        help.setOnClickListener(v->{
+        help.setOnClickListener(v -> {
 
         });
 
@@ -119,23 +122,9 @@ public class LessonsActivity extends FullScreen {
             Toast.makeText(LessonsActivity.this, getString(R.string.logout_success), Toast.LENGTH_LONG).show();
         });
 
-        if (!getIntent().getStringExtra("json").equals("")) {
-            json_data = getIntent().getStringExtra("json");
-        } else {
-            json_data = "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"test1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"test2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"test3\":{\"success\":0},\"9\":{\"success\":0},\"finalTest\":{\"success\":0}}";
-        }
-        update_lessons_status();
-    }
+        json_data = getIntent().getStringExtra("json");
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                json_data = data.getStringExtra("json");
-                update_lessons_status();
-            }
-        }
+        update_lessons_status();
     }
 
     private void update_lessons_status() {
@@ -168,7 +157,7 @@ public class LessonsActivity extends FullScreen {
             Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
             intent.putExtra("lesson_number", 0);
             intent.putExtra("json", json_data);
-            startActivityForResult(intent, 1);
+            startActivity(intent);
         });
 
         if (zero_lesson >= num) {
@@ -179,7 +168,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 1);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card1.setEnabled(false);
@@ -194,7 +183,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 2);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card2.setEnabled(false);
@@ -226,7 +215,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 3);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card3.setEnabled(false);
@@ -241,7 +230,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 4);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card4.setEnabled(false);
@@ -256,7 +245,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 5);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card5.setEnabled(false);
@@ -288,7 +277,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 6);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card6.setEnabled(false);
@@ -303,7 +292,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 7);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card7.setEnabled(false);
@@ -318,7 +307,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 8);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card8.setEnabled(false);
@@ -350,7 +339,7 @@ public class LessonsActivity extends FullScreen {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 9);
                 intent.putExtra("json", json_data);
-                startActivityForResult(intent, 1);
+                startActivity(intent);
             });
         } else {
             card9.setEnabled(false);
@@ -386,30 +375,36 @@ public class LessonsActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
-
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            finishAffinity();
+        } else {
+            backToast = Toast.makeText(getApplicationContext(), getString(R.string.back_press_exit), Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 
+
     @SuppressLint({"ResourceAsColor", "SetTextI18n"})
-    private void set_colors(int lesson,TextView txt_rate,TextView txt_des_rate){
-        txt_rate.setText(lesson +"%");
-        if(lesson<50) {
-            txt_rate.setTextColor(R.color.red);
-            if(zero_lesson==0){
+    private void set_colors(int lesson, TextView txt_rate, TextView txt_des_rate) {
+        txt_rate.setText(lesson + "%");
+        if (lesson < 50) {
+            txt_rate.setTextColor(Color.parseColor("#ba4f4f"));
+            if (lesson == 0) {
                 txt_des_rate.setText(getString(R.string.poor));
-            }else{
+            } else {
                 txt_des_rate.setText(getString(R.string.good));
             }
-            txt_des_rate.setTextColor(R.color.red);
-        }
-        if(lesson<80) {
-            txt_rate.setTextColor(R.color.yellow);
+            txt_des_rate.setTextColor(Color.parseColor("#ba4f4f"));
+        } else if (lesson < 80) {
+            txt_rate.setTextColor(Color.parseColor("#baba4f"));
             txt_des_rate.setText(getString(R.string.excellent));
-            txt_des_rate.setTextColor(R.color.yellow);
-        }
-        if(lesson<=100) {
-            txt_rate.setTextColor(R.color.green);
+            txt_des_rate.setTextColor(Color.parseColor("#baba4f"));
+        } else if (lesson <= 100) {
+            txt_rate.setTextColor(Color.parseColor("#4DBAA2"));
             txt_des_rate.setText(getString(R.string.perfect));
-            txt_des_rate.setTextColor(R.color.green);
+            txt_des_rate.setTextColor(Color.parseColor("#4DBAA2"));
         }
     }
 }

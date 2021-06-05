@@ -38,8 +38,8 @@ public class CreateClassActivity extends FullScreen {
         mAuth = FirebaseAuth.getInstance();
 
         create.setOnClickListener(v -> {
-            class_id_as_string=class_id.getText().toString();
-            class_id_as_string=getIntent().getStringExtra("username")+"_"+class_id_as_string;
+            class_id_as_string = class_id.getText().toString();
+            class_id_as_string = getIntent().getStringExtra("username") + "_" + class_id_as_string;
             if (!class_id_as_string.equals("") && !classname.getText().toString().equals("")) {
                 db_check.collection("classes")
                         .whereEqualTo(class_id_as_string, true)

@@ -28,10 +28,12 @@ public class TestActivity extends FullScreen {
     final int zeroID = R.drawable.zero, oneID = R.drawable.one, twoID = R.drawable.two, threeID = R.drawable.three, fourID = R.drawable.four, fiveID = R.drawable.five, sixID = R.drawable.six, sevenID = R.drawable.seven, eightID = R.drawable.eight, nineID = R.drawable.nine;
     ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2, page3, page4, page5, page6, page7, page8, page9;
     Button true1, true2, true3, false1, false2, false3;
-    boolean bTrue1=false, bTrue2=false, bTrue3=false, bFalse1=false, bFalse2=false, bFalse3=false;
+    boolean bTrue1 = false, bTrue2 = false, bTrue3 = false, bFalse1 = false, bFalse2 = false, bFalse3 = false;
     int random, random2, rUnit, rUnit2, id, mul, curPage;
     String from;
     String[] result;
+    private long backPressedTime;
+    private Toast backToast;
 
     private FirebaseAuth mAuth;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -152,9 +154,9 @@ public class TestActivity extends FullScreen {
         });
 
         next.setOnClickListener(v -> {
-            if( !((bTrue1 || bFalse1) && (bTrue2 || bFalse2) && (bTrue3 || bFalse3)) ){
+            if (!((bTrue1 || bFalse1) && (bTrue2 || bFalse2) && (bTrue3 || bFalse3))) {
                 Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 Intent intent;
                 if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1) || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2) || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
                     score = 10;
@@ -173,6 +175,9 @@ public class TestActivity extends FullScreen {
                     } else if (curPage < 9) {
                         json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
                     } else if (curPage == 9 && last_score < jsonObject.getJSONObject(from).getInt("success") + score) {
+                        if (jsonObject.getJSONObject(from).getInt("success") + score < 80) {
+                            Toast.makeText(context, getString(R.string.lesson_continue), Toast.LENGTH_LONG).show();
+                        }
                         json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
                     } else {
                         json_temp.put("success", last_score);
@@ -204,9 +209,10 @@ public class TestActivity extends FullScreen {
 
                 }
                 startActivity(intent);
-                if(curPage < 9) overridePendingTransition(0, 0);
+                if (curPage < 9) overridePendingTransition(0, 0);
 
-            }});
+            }
+        });
 
     }
 
@@ -402,6 +408,14 @@ public class TestActivity extends FullScreen {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(this,getString(R.string.must_complete),Toast.LENGTH_LONG).show();
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            backToast.cancel();
+            super.onBackPressed();
+            finishAffinity();
+        } else {
+            backToast = Toast.makeText(getApplicationContext(), getString(R.string.back_press_exit), Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }
