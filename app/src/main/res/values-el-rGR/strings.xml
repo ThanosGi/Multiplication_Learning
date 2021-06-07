@@ -19,7 +19,7 @@
     <string name="success_student">Ο μαθητής δημιουργήθηκε επιτυχώς!</string>
     <string name="pass_not_match">Οι κωδικοί δεν ταυτίζονται</string>
     <string name="log_out">Δεν βρέθηκε λογαριασμός</string>
-    <string name="select_subject">Select Subject</string>
+    <string name="select_subject">Επίλεξε Μάθημα</string>
     <string name="number_zero">Αριθμός 0</string>
     <string name="number_one">Αριθμός 1</string>
     <string name="number_two">Αριθμός 2</string>

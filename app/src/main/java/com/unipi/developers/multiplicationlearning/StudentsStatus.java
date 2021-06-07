@@ -3,6 +3,7 @@ package com.unipi.developers.multiplicationlearning;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
 
@@ -115,6 +116,11 @@ public class StudentsStatus extends FullScreen {
     }
 
     private void get_scores() {
+        if (classesID.isEmpty()){
+            Toast.makeText(getApplicationContext(),"Δημιούργησε τάξη ή/και μαθητή!",Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
         db_get_scores.collection("students")
                 .whereIn("classId", classesID)
                 .get()
@@ -140,6 +146,9 @@ public class StudentsStatus extends FullScreen {
     }
 
     private void make_chart(int pos) {
+        if (students_username.isEmpty()){
+            return;
+        }
         txt_student_name.setText(students_username.get(pos));
         json_data = students_progress.get(pos);
         JSONObject json;
