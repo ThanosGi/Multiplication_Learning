@@ -35,7 +35,8 @@ public class MiniTestActivity extends FullScreen {
     FirebaseFirestore db;
     Context context = this;
     private int score = 0;
-    String json_data;
+    private String json_data,wrongs_data;
+    JSONObject wrongs;
     private long backPressedTime;
     private Toast backToast;
 
@@ -78,6 +79,8 @@ public class MiniTestActivity extends FullScreen {
 
         from = getIntent().getIntExtra("from", 0);
         json_data = getIntent().getStringExtra("json");
+        wrongs_data=getIntent().getStringExtra("wrongs");
+
 
         //here it checks which test it is comes from to dynamically generate the numbers
         switch (from) {
@@ -113,6 +116,7 @@ public class MiniTestActivity extends FullScreen {
                 break;
         }
 
+
         makeCards(number);
 
         GradientDrawable gd = new GradientDrawable();
@@ -128,36 +132,108 @@ public class MiniTestActivity extends FullScreen {
                     result9.getText().toString().equals("") || result10.getText().toString().equals("")) {
                 Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
             } else {
+                try {
+                    wrongs = new JSONObject(wrongs_data);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                JSONObject temp=new JSONObject();
                 if (Objects.equals(Integer.parseInt(result1.getText().toString()), results.get(0))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("0",result1.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result2.getText().toString()), results.get(1))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("1",result2.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result3.getText().toString()), results.get(2))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("2",result3.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result4.getText().toString()), results.get(3))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("3",result4.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result5.getText().toString()), results.get(4))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("4",result5.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result6.getText().toString()), results.get(5))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("5",result6.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result7.getText().toString()), results.get(6))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("6",result7.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result8.getText().toString()), results.get(7))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("7",result8.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result9.getText().toString()), results.get(8))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("8",result9.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
                 if (Objects.equals(Integer.parseInt(result10.getText().toString()), results.get(9))) {
                     score += 10;
+                }else{
+                    try {
+                        temp.put("9",result10.getText().toString());
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+                try {
+                    wrongs.put(String.valueOf(from),temp);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
                 JSONObject jsonObject = new JSONObject();
                 JSONObject json_temp;
@@ -165,7 +241,6 @@ public class MiniTestActivity extends FullScreen {
                     jsonObject = new JSONObject(json_data);
 
                     json_temp = new JSONObject();
-                    //if(from.equals("test1"))  <<<<<< GEORGE GIA SENA ME <3 >>>>>>
                     json_temp.put("success", Math.max(jsonObject.getJSONObject(String.valueOf(from)).getInt("success"), score));
                     jsonObject.put(String.valueOf(from), json_temp);
 
@@ -181,6 +256,7 @@ public class MiniTestActivity extends FullScreen {
 
                 Map<String, Object> user = new HashMap<>();
                 user.put("progress", new_json);
+                user.put("wrongs",wrongs.toString());
 
                 db.collection("students")
                         .document(Objects.requireNonNull(mAuth.getUid()))
@@ -188,6 +264,7 @@ public class MiniTestActivity extends FullScreen {
                         .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
                 Intent intent = new Intent(MiniTestActivity.this, LessonsActivity.class);
                 intent.putExtra("json", new_json);
+                intent.putExtra("wrongs",wrongs.toString());
 
                 startActivity(intent);
                 overridePendingTransition(0, 0);

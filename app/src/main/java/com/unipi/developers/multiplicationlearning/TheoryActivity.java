@@ -93,6 +93,7 @@ public class TheoryActivity extends FullScreen {
             Intent intent = new Intent(TheoryActivity.this, MiniTestActivity.class);
             intent.putExtra("from", lesson_number);
             intent.putExtra("json", getIntent().getStringExtra("json"));
+            intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
             startActivity(intent);
         });
 

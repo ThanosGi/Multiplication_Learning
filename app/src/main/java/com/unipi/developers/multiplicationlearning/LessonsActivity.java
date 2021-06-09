@@ -156,6 +156,7 @@ public class LessonsActivity extends FullScreen {
         card0.setOnClickListener(v -> {
             Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
             intent.putExtra("lesson_number", 0);
+            intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
             intent.putExtra("json", json_data);
             startActivity(intent);
         });
@@ -167,6 +168,7 @@ public class LessonsActivity extends FullScreen {
             card1.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 1);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -182,6 +184,7 @@ public class LessonsActivity extends FullScreen {
             card2.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 2);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -199,6 +202,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("from", "test1");
                 intent.putExtra("page", 1);
                 intent.putExtra("old_score", 0);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -214,6 +218,7 @@ public class LessonsActivity extends FullScreen {
             card3.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 3);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -229,6 +234,7 @@ public class LessonsActivity extends FullScreen {
             card4.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 4);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -244,6 +250,7 @@ public class LessonsActivity extends FullScreen {
             card5.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 5);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -261,6 +268,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("from", "test2");
                 intent.putExtra("page", 1);
                 intent.putExtra("old_score", 0);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -276,6 +284,7 @@ public class LessonsActivity extends FullScreen {
             card6.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 6);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -291,6 +300,7 @@ public class LessonsActivity extends FullScreen {
             card7.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 7);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -306,6 +316,7 @@ public class LessonsActivity extends FullScreen {
             card8.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 8);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -323,6 +334,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("from", "test3");
                 intent.putExtra("page", 1);
                 intent.putExtra("old_score", 0);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -338,6 +350,7 @@ public class LessonsActivity extends FullScreen {
             card9.setOnClickListener(v -> {
                 Intent intent = new Intent(LessonsActivity.this, TheoryActivity.class);
                 intent.putExtra("lesson_number", 9);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });
@@ -355,6 +368,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("from", "finalTest");
                 intent.putExtra("page", 1);
                 intent.putExtra("old_score", 0);
+                intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
                 startActivity(intent);
             });

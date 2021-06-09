@@ -58,7 +58,7 @@ public class TeacherActivity extends FullScreen {
         });
 
         card_studentStats.setOnClickListener(v -> {
-            Intent intent = new Intent(TeacherActivity.this, StudentsStatus.class);
+            Intent intent = new Intent(TeacherActivity.this, StudentsStatusActivity.class);
             startActivity(intent);
         });
 

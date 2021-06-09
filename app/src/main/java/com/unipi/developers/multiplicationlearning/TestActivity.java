@@ -32,6 +32,7 @@ public class TestActivity extends FullScreen {
     int random, random2, rUnit, rUnit2, id, mul, curPage;
     String from;
     String[] result;
+    JSONObject wrongs;
     private long backPressedTime;
     private Toast backToast;
 
@@ -170,6 +171,8 @@ public class TestActivity extends FullScreen {
 
                     json_temp = new JSONObject();
                     if (curPage == 1) {
+                        wrongs = new JSONObject();
+
                         last_score = jsonObject.getJSONObject(from).getInt("success");
                         json_temp.put("success", score);
                     } else if (curPage < 9) {

@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
-public class StudentsStatus extends FullScreen {
+public class StudentsStatusActivity extends FullScreen {
     private FirebaseAuth mAuth;
     FirebaseFirestore db_get_classes = FirebaseFirestore.getInstance();
     FirebaseFirestore db_get_scores = FirebaseFirestore.getInstance();
@@ -117,7 +117,7 @@ public class StudentsStatus extends FullScreen {
 
     private void get_scores() {
         if (classesID.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Δημιούργησε τάξη ή/και μαθητή!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),getString(R.string.create_class_students_first),Toast.LENGTH_SHORT).show();
             finish();
             return;
         }

@@ -108,9 +108,9 @@ public class LogInActivity extends FullScreen {
                                     if (found.isSuccessful()) {
                                         DocumentSnapshot document_json = found.getResult();
                                         if (Objects.requireNonNull(document_json).exists()) {
-                                            String temp = document_json.getString("progress");
                                             Intent intent = new Intent(context, LessonsActivity.class);
-                                            intent.putExtra("json", temp);
+                                            intent.putExtra("json", document_json.getString("progress"));
+                                            intent.putExtra("wrongs",document_json.getString("wrongs"));
                                             startActivity(intent);
                                         }
                                     }
