@@ -46,21 +46,11 @@ public class TeacherActivity extends FullScreen {
         card_createClass = findViewById(R.id.card_teacher_create_class);
         card_studentStats = findViewById(R.id.card_teacher_student_statistics);
 
-        card_myClasses.setOnClickListener(v -> {
-            Intent intent = new Intent(TeacherActivity.this, MyClassesActivity.class);
-            startActivity(intent);
-        });
+        card_myClasses.setOnClickListener(v -> startActivity(new Intent(TeacherActivity.this, MyClassesActivity.class)));
 
-        card_createClass.setOnClickListener(v -> {
-            Intent intent = new Intent(TeacherActivity.this, CreateClassActivity.class);
-            intent.putExtra("username", getIntent().getStringExtra("username"));
-            startActivity(intent);
-        });
+        card_createClass.setOnClickListener(v -> startActivity(new Intent(TeacherActivity.this, CreateClassActivity.class).putExtra("username", getIntent().getStringExtra("username"))));
 
-        card_studentStats.setOnClickListener(v -> {
-            Intent intent = new Intent(TeacherActivity.this, StudentsStatusActivity.class);
-            startActivity(intent);
-        });
+        card_studentStats.setOnClickListener(v -> startActivity(new Intent(TeacherActivity.this, StudentsStatusActivity.class)));
 
     }
 

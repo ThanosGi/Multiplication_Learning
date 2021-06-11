@@ -73,6 +73,7 @@ public class CreateClassActivity extends FullScreen {
 
                         Toast.makeText(context, getString(R.string.class_success), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(this, TeacherActivity.class);
+                        intent.putExtra("username",getIntent().getStringExtra("username"));
                         startActivity(intent);
                     } else {
                         Toast.makeText(context, getString(R.string.class_failed), Toast.LENGTH_LONG).show();

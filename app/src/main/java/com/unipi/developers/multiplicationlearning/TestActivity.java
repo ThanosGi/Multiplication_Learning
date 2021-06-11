@@ -33,6 +33,7 @@ public class TestActivity extends FullScreen {
     String from;
     String[] result;
     JSONObject wrongs;
+    String wrongs_temp;
     private long backPressedTime;
     private Toast backToast;
 
@@ -158,21 +159,56 @@ public class TestActivity extends FullScreen {
             if (!((bTrue1 || bFalse1) && (bTrue2 || bFalse2) && (bTrue3 || bFalse3))) {
                 Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
             } else {
-                Intent intent;
-                if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1) || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2) || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
-                    score = 10;
-                }
-
                 JSONObject jsonObject = new JSONObject();
                 JSONObject json_temp;
+                String wrongs_temp2="";
                 try {
-                    String temp = getIntent().getStringExtra("json");
-                    jsonObject = new JSONObject(temp);
+                    if(curPage==1){
+                        wrongs_temp="";
+                    }else{
+                        wrongs_temp=getIntent().getStringExtra("wrongs_temp");
+                    }
+                    if ((true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1)
+                            || (true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2)
+                            || (true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3))
+                        score = 10;
+                    if(!(true1.getBackground() == gd && answer1 || false1.getBackground() == gd && !answer1)) {
+                        if(!wrongs_temp2.equals("")) {
+                            wrongs_temp2=wrongs_temp2+", "+(num1.getTag()+"x"+num2.getTag()+"="+result1_num1.getTag()+result1_num2.getTag());
+                        } else {
+                            wrongs_temp2=(num1.getTag()+"x"+num2.getTag()+"="+result1_num1.getTag()+result1_num2.getTag());
+                        }
+                    }
+                    if(!(true2.getBackground() == gd && answer2 || false2.getBackground() == gd && !answer2)) {
+                        if(!wrongs_temp2.equals("")) {
+                            wrongs_temp2=wrongs_temp2+", "+(num3.getTag()+"x"+num4.getTag()+"="+result2_num1.getTag()+result2_num2.getTag());
+                        } else {
+                            wrongs_temp2=(num3.getTag()+"x"+num4.getTag()+"="+result2_num1.getTag()+result2_num2.getTag());
+                        }
+                    }
+                    if(!(true3.getBackground() == gd && answer3 || false3.getBackground() == gd && !answer3)) {
+                        if(!wrongs_temp2.equals("")) {
+                            wrongs_temp2=wrongs_temp2+", "+(num5.getTag()+"x"+num6.getTag()+"="+result3_num1.getTag()+result3_num2.getTag());
+                        } else {
+                            wrongs_temp2=(num5.getTag()+"x"+num6.getTag()+"="+result3_num1.getTag()+result3_num2.getTag());
+                        }
+
+                    }
+                    if(!wrongs_temp2.equals("")) {
+                        if(!wrongs_temp.equals("")){
+                            wrongs_temp=wrongs_temp+", "+wrongs_temp2;
+                        }else {
+                            wrongs_temp+=wrongs_temp2;
+                        }
+                    }
+
+
+                    jsonObject = new JSONObject(getIntent().getStringExtra("json"));
+                    wrongs=new JSONObject(getIntent().getStringExtra("wrongs"));
+
 
                     json_temp = new JSONObject();
                     if (curPage == 1) {
-                        wrongs = new JSONObject();
-
                         last_score = jsonObject.getJSONObject(from).getInt("success");
                         json_temp.put("success", score);
                     } else if (curPage < 9) {
@@ -182,9 +218,10 @@ public class TestActivity extends FullScreen {
                             Toast.makeText(context, getString(R.string.lesson_continue), Toast.LENGTH_LONG).show();
                         }
                         json_temp.put("success", jsonObject.getJSONObject(from).getInt("success") + score);
+                        wrongs.put(from,wrongs_temp);
                     } else {
                         json_temp.put("success", last_score);
-
+                        wrongs.put(from,wrongs_temp);
                     }
                     jsonObject.put(from, json_temp);
 
@@ -192,28 +229,31 @@ public class TestActivity extends FullScreen {
                     e.printStackTrace();
                 }
 
-                String new_json = jsonObject.toString();
+                Intent intent;
                 if (curPage < 9) {
                     intent = new Intent(TestActivity.this, TestActivity.class);
                     intent.putExtra("from", from);
-                    intent.putExtra("json", new_json);
                     intent.putExtra("old_score", last_score);
                     intent.putExtra("page", curPage + 1);
+                    intent.putExtra("wrongs_temp",wrongs_temp);
                 } else {
                     Map<String, Object> user = new HashMap<>();
-                    user.put("progress", new_json);
+                    user.put("progress", jsonObject.toString());
+                    user.put("wrongs",wrongs.toString());
 
                     db.collection("students")
                             .document(Objects.requireNonNull(mAuth.getUid()))
                             .set(user, SetOptions.merge())
-                            .addOnSuccessListener(aVoid -> Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show()).addOnFailureListener(e -> Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
+                            .addOnSuccessListener(aVoid ->
+                                    Toast.makeText(context, getString(R.string.progress), Toast.LENGTH_LONG).show())
+                            .addOnFailureListener(e ->
+                                    Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show());
                     intent = new Intent(TestActivity.this, LessonsActivity.class);
-                    intent.putExtra("json", new_json);
-
                 }
+                intent.putExtra("json", jsonObject.toString());
+                intent.putExtra("wrongs",wrongs.toString());
                 startActivity(intent);
                 if (curPage < 9) overridePendingTransition(0, 0);
-
             }
         });
 
@@ -287,10 +327,12 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num1.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num1.setTag(String.valueOf(random));
         random = new Random().nextInt(rUnit);
         mul *= random;
         id = getTranslation(random);
         num2.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num2.setTag(String.valueOf(random));
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
@@ -308,10 +350,12 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num3.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num3.setTag(String.valueOf(random));
         random = new Random().nextInt(rUnit);
         mul *= random;
         id = getTranslation(random);
         num4.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num4.setTag(String.valueOf(random));
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
@@ -329,10 +373,12 @@ public class TestActivity extends FullScreen {
         mul *= random;
         id = getTranslation(random);
         num5.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num5.setTag(String.valueOf(random));
         random = new Random().nextInt(rUnit);
         mul *= random;
         id = getTranslation(random);
         num6.setImageDrawable(ContextCompat.getDrawable(this, id));
+        num6.setTag(String.valueOf(random));
 
         random2 = new Random().nextInt(2);
         if (random2 == 0) {
@@ -352,23 +398,31 @@ public class TestActivity extends FullScreen {
             if (result.length == 2) {
                 id = getTranslation(Integer.parseInt(result[1]));
                 image2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                image2.setTag("");
                 image1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setTag(result[1]);
             } else {
                 id = getTranslation(Integer.parseInt(result[1]));
                 image1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setTag(result[1]);
                 id = getTranslation(Integer.parseInt(result[2]));
                 image2.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setTag(result[2]);
             }
         } else {
             if (result.length == 1) {
                 id = getTranslation(Integer.parseInt(result[0]));
                 image2.setImageDrawable(ContextCompat.getDrawable(this, R.color.white));
+                image2.setTag("");
                 image1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setTag(result[0]);
             } else {
                 id = getTranslation(Integer.parseInt(result[0]));
                 image1.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image1.setTag(result[0]);
                 id = getTranslation(Integer.parseInt(result[1]));
                 image2.setImageDrawable(ContextCompat.getDrawable(this, id));
+                image2.setTag(result[1]);
             }
         }
     }
@@ -414,7 +468,6 @@ public class TestActivity extends FullScreen {
         if (backPressedTime + 2000 > System.currentTimeMillis()) {
             backToast.cancel();
             super.onBackPressed();
-            finishAffinity();
         } else {
             backToast = Toast.makeText(getApplicationContext(), getString(R.string.back_press_exit), Toast.LENGTH_SHORT);
             backToast.show();

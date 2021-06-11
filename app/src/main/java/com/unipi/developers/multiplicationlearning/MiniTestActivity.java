@@ -35,7 +35,7 @@ public class MiniTestActivity extends FullScreen {
     FirebaseFirestore db;
     Context context = this;
     private int score = 0;
-    private String json_data,wrongs_data;
+    private String json_data;
     JSONObject wrongs;
     private long backPressedTime;
     private Toast backToast;
@@ -79,7 +79,6 @@ public class MiniTestActivity extends FullScreen {
 
         from = getIntent().getIntExtra("from", 0);
         json_data = getIntent().getStringExtra("json");
-        wrongs_data=getIntent().getStringExtra("wrongs");
 
 
         //here it checks which test it is comes from to dynamically generate the numbers
@@ -133,100 +132,71 @@ public class MiniTestActivity extends FullScreen {
                 Toast.makeText(this, R.string.warning, Toast.LENGTH_SHORT).show();
             } else {
                 try {
-                    wrongs = new JSONObject(wrongs_data);
+                    wrongs = new JSONObject(getIntent().getStringExtra("wrongs"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                JSONObject temp=new JSONObject();
+                String temp= "";
+
                 if (Objects.equals(Integer.parseInt(result1.getText().toString()), results.get(0))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("0",result1.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x0="+result1.getText().toString());
+                    else temp=(from+"x0="+result1.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result2.getText().toString()), results.get(1))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("1",result2.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x1="+result2.getText().toString());
+                    else temp=(from+"x1="+result2.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result3.getText().toString()), results.get(2))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("2",result3.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x2="+result3.getText().toString());
+                    else temp=(from+"x2="+result3.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result4.getText().toString()), results.get(3))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("3",result4.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x3="+result4.getText().toString());
+                    else temp=(from+"x3="+result4.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result5.getText().toString()), results.get(4))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("4",result5.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x4="+result5.getText().toString());
+                    else temp=(from+"x4="+result5.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result6.getText().toString()), results.get(5))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("5",result6.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x5="+result6.getText().toString());
+                    else temp=(from+"x5="+result6.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result7.getText().toString()), results.get(6))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("6",result7.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x6="+result7.getText().toString());
+                    else temp=(from+"x6="+result7.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result8.getText().toString()), results.get(7))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("7",result8.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x7="+result8.getText().toString());
+                    else temp=(from+"x7="+result8.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result9.getText().toString()), results.get(8))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("8",result9.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x8="+result9.getText().toString());
+                    else temp=(from+"x8="+result9.getText().toString());
                 }
                 if (Objects.equals(Integer.parseInt(result10.getText().toString()), results.get(9))) {
                     score += 10;
                 }else{
-                    try {
-                        temp.put("9",result10.getText().toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+                    if(!temp.equals("")) temp=temp+", "+(from+"x9="+result10.getText().toString());
+                    else temp=(from+"x9="+result10.getText().toString());
                 }
                 try {
                     wrongs.put(String.valueOf(from),temp);

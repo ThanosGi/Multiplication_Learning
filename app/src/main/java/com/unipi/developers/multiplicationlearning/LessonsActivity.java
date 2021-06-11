@@ -204,6 +204,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("old_score", 0);
                 intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
+                intent.putExtra("wrongs_temp","");
                 startActivity(intent);
             });
         } else {
@@ -270,6 +271,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("old_score", 0);
                 intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
+                intent.putExtra("wrongs_temp","");
                 startActivity(intent);
             });
         } else {
@@ -336,6 +338,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("old_score", 0);
                 intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
+                intent.putExtra("wrongs_temp","");
                 startActivity(intent);
             });
         } else {
@@ -370,6 +373,7 @@ public class LessonsActivity extends FullScreen {
                 intent.putExtra("old_score", 0);
                 intent.putExtra("wrongs",getIntent().getStringExtra("wrongs"));
                 intent.putExtra("json", json_data);
+                intent.putExtra("wrongs_temp","");
                 startActivity(intent);
             });
         } else {

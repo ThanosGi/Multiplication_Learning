@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -23,6 +24,7 @@ public class SignUpTeacherActivity extends FullScreen {
     EditText email;
     EditText password;
     EditText password2;
+    TextView txt_create_account;
 
     Context context = this;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -37,6 +39,8 @@ public class SignUpTeacherActivity extends FullScreen {
         email = findViewById(R.id.et_email);
         password = findViewById(R.id.et_password);
         password2 = findViewById(R.id.et_password2);
+        txt_create_account=findViewById(R.id.txt_create_account);
+        txt_create_account.setOnClickListener(v -> startActivity(new Intent(this,LogInActivity.class)));
     }
 
     @Override

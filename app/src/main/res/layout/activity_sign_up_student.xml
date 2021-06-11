@@ -20,33 +20,33 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:gravity="center"
         android:id="@+id/et_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="@font/riffic"
+        android:gravity="center"
+        android:hint="@string/email"
+        android:inputType="textPersonName"
         android:textColor="@color/text_color"
         android:textColorHint="@color/text_color"
-        android:hint="@string/username"
-        android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_student" />
 
     <EditText
-        android:gravity="center"
         android:id="@+id/et_passphrase"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:fontFamily="@font/riffic"
+        android:gravity="center"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         android:textColor="@color/text_color"
         android:textColorHint="@color/text_color"
-        android:hint="@string/passphrase"
-        android:inputType="textPassword"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_username" />

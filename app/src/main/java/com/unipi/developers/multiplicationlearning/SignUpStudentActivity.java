@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -30,6 +31,7 @@ public class SignUpStudentActivity extends FullScreen {
     FirebaseFirestore db_exists = FirebaseFirestore.getInstance();
     FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
     ArrayList<String> classes;
+    TextView txt_create_account;
 
 
     @Override
@@ -43,6 +45,9 @@ public class SignUpStudentActivity extends FullScreen {
         passphrase = findViewById(R.id.et_passphrase);
         class_id = findViewById(R.id.et_classid);
         classes = new ArrayList<>();
+        txt_create_account=findViewById(R.id.txt_create_account);
+        txt_create_account.setOnClickListener(v -> startActivity(new Intent(this,LogInActivity.class)));
+
 
         db_exists.collection("classes")
                 .document("kXJy56RB69Jewvnh23Pf")
@@ -56,7 +61,6 @@ public class SignUpStudentActivity extends FullScreen {
                     class_id.setSelection(0);
                     class_id.setAdapter(adapter);
                 });
-
 
     }
 
@@ -99,7 +103,7 @@ public class SignUpStudentActivity extends FullScreen {
             user.put("username", username.getText().toString());
             user.put("classId", class_id.getSelectedItem().toString());
             user.put("progress", "{\"0\":{\"success\":0},\"1\":{\"success\":0},\"2\":{\"success\":0},\"test1\":{\"success\":0},\"3\":{\"success\":0},\"4\":{\"success\":0},\"5\":{\"success\":0},\"test2\":{\"success\":0},\"6\":{\"success\":0},\"7\":{\"success\":0},\"8\":{\"success\":0},\"test3\":{\"success\":0},\"9\":{\"success\":0},\"finalTest\":{\"success\":0}}");
-            user.put("wrongs","");
+            user.put("wrongs","{}");
 
             db_auth.collection("students")
                     .document(account.getUid())
