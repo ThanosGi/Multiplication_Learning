@@ -71,4 +71,6 @@
     <string name="back_press_exit">Πατήστε ξανά το πίσω για να βγείτε</string>
     <string name="lesson_continue">Πρέπει να πετύχεις μεγαλύτερο σκορ για να συνεχίσεις στο επόμενο μάθημα</string>
     <string name="create_class_students_first">Δημιούργησε τάξη ή/και μαθητή</string>
+    <string name="wrongs">Λάθη</string>
+    <string name="none">Τίποτα</string>
 </resources>

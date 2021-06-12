@@ -112,7 +112,7 @@ public class LessonsActivity extends FullScreen {
         help = findViewById(R.id.btn_help);
         logout = findViewById(R.id.btn_log_out);
         help.setOnClickListener(v -> {
-
+            startActivity(new Intent(this,WrongsActivity.class).putExtra("wrongs",getIntent().getStringExtra("wrongs")));
         });
 
         logout.setOnClickListener(v -> {

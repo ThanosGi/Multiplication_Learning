@@ -70,4 +70,6 @@
     <string name="back_press_exit">Press back again to exit</string>
     <string name="lesson_continue">You must score higher to continue to the next lesson</string>
     <string name="create_class_students_first">Create class or/and student</string>
+    <string name="wrongs">Wrongs</string>
+    <string name="none">None</string>
 </resources>
