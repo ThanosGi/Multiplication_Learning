@@ -1,8 +1,11 @@
 package com.unipi.developers.multiplicationlearning;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -15,6 +18,7 @@ import java.util.Iterator;
 
 public class WrongsActivity extends FullScreen {
     JSONObject wrongs;
+    ImageView btn_help;
     TableLayout tableLayout;
     TextView lesson_row, wrongs_row;
 
@@ -22,6 +26,17 @@ public class WrongsActivity extends FullScreen {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wrongs);
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WrongsActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","wrongs");
+                startActivity(intent);
+            }
+        });
+
         try {
             wrongs=new JSONObject(getIntent().getStringExtra("wrongs"));
         } catch (JSONException e) {

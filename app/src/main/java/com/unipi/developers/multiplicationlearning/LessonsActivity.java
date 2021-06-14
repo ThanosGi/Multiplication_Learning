@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,8 +23,8 @@ import org.json.JSONObject;
 
 public class LessonsActivity extends FullScreen {
     FirebaseFirestore db;
-    ImageView help;
-    CardView card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, cardTest1, cardTest2, cardTest3, cardFinalTest;
+    ImageView btn_help;
+    CardView card0, card1, card2, card3, card4, card5, card6, card7, card8, card9, cardTest1, cardTest2, cardTest3, cardFinalTest, btn_wrongs;
     TextView txt_rate0, txt_rate1, txt_rate2, txt_rate3, txt_rate4, txt_rate5, txt_rate6, txt_rate7, txt_rate8, txt_rate9, txt_rater1, txt_rater2, txt_rater3, txt_ratefr;
     TextView logout, txt_des_rate0, txt_des_rate1, txt_des_rate2, txt_des_rate3, txt_des_rate4, txt_des_rate5, txt_des_rate6, txt_des_rate7, txt_des_rate8, txt_des_rate9, txt_des_rater1, txt_des_rater2, txt_des_rater3, txt_des_ratefr;
     int zero_lesson, one_lesson, two_lesson, three_lesson, four_lesson, five_lesson, six_lesson, seven_lesson, eight_lesson, nine_lesson, review1, review2, review3, final_review;
@@ -52,6 +53,14 @@ public class LessonsActivity extends FullScreen {
         updateUI(FirebaseAuth.getInstance().getCurrentUser());
         db = FirebaseFirestore.getInstance();
         db.setFirestoreSettings(settings);
+
+        btn_wrongs = findViewById(R.id.btn_wrongs);
+        btn_wrongs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LessonsActivity.this,WrongsActivity.class).putExtra("wrongs",getIntent().getStringExtra("wrongs")));
+            }
+        });
 
         card0 = findViewById(R.id.card0);
         txt_rate0 = findViewById(R.id.txt_rate0);
@@ -109,10 +118,12 @@ public class LessonsActivity extends FullScreen {
         txt_ratefr = findViewById(R.id.txt_ratefr);
         txt_des_ratefr = findViewById(R.id.txt_des_ratefr);
 
-        help = findViewById(R.id.btn_help);
+        btn_help = findViewById(R.id.btn_help);
         logout = findViewById(R.id.btn_log_out);
-        help.setOnClickListener(v -> {
-            startActivity(new Intent(this,WrongsActivity.class).putExtra("wrongs",getIntent().getStringExtra("wrongs")));
+        btn_help.setOnClickListener(v -> {
+            Intent intent = new Intent(LessonsActivity.this,PdfViewerActivity.class);
+            intent.putExtra("fromActivity","lessons");
+            startActivity(intent);
         });
 
         logout.setOnClickListener(v -> {

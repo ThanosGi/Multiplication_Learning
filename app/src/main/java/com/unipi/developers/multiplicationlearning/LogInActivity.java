@@ -2,9 +2,12 @@ package com.unipi.developers.multiplicationlearning;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import java.io.File;
 import java.util.Objects;
 
 public class LogInActivity extends FullScreen {
@@ -24,6 +28,7 @@ public class LogInActivity extends FullScreen {
     TextView txtCreateAccount;
     EditText username;
     EditText passphrase;
+    ImageView btn_help;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseFirestore db_json = FirebaseFirestore.getInstance();
 
@@ -42,6 +47,16 @@ public class LogInActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","login");
+                startActivity(intent);
+            }
+        });
 
         username = findViewById(R.id.et_username);
         passphrase = findViewById(R.id.et_passphrase);

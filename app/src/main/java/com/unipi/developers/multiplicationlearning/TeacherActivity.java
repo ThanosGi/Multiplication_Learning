@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class TeacherActivity extends FullScreen {
-    ImageView help;
+    ImageView btn_help;
     TextView logout;
     TextView welcome;
     CardView card_myClasses, card_createClass, card_studentStats;
@@ -27,12 +27,14 @@ public class TeacherActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher);
 
-        help = findViewById(R.id.btn_help);
+        btn_help = findViewById(R.id.btn_help);
         logout = findViewById(R.id.btn_log_out2);
         welcome = findViewById(R.id.txt_hello_teacher);
         welcome.setText(getString(R.string.hello_teacher_name) + " " + getIntent().getStringExtra("username"));
-        help.setOnClickListener(v -> {
-
+        btn_help.setOnClickListener(v -> {
+            Intent intent = new Intent(TeacherActivity.this,PdfViewerActivity.class);
+            intent.putExtra("fromActivity","teacher");
+            startActivity(intent);
         });
 
         logout.setOnClickListener(v -> {

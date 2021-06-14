@@ -1,8 +1,11 @@
 package com.unipi.developers.multiplicationlearning;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,6 +26,7 @@ public class MyClassesActivity extends FullScreen {
     ArrayList<String> classesNAME;
     TableLayout tableLayout;
     TextView class_name_row, class_id_row;
+    ImageView btn_help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,16 @@ public class MyClassesActivity extends FullScreen {
         setContentView(R.layout.activity_my_classes);
         mAuth = FirebaseAuth.getInstance();
         tableLayout = findViewById(R.id.tableLayout);
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyClassesActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","myclasses");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

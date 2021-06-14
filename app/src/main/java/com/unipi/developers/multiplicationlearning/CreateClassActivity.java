@@ -3,8 +3,10 @@ package com.unipi.developers.multiplicationlearning;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
@@ -23,6 +25,7 @@ public class CreateClassActivity extends FullScreen {
     EditText class_id, classname;
     String class_id_as_string;
     Context context = this;
+    ImageView btn_help;
     FirebaseFirestore db_check = FirebaseFirestore.getInstance();
     FirebaseFirestore db_create = FirebaseFirestore.getInstance();
     FirebaseFirestore db_create_instance = FirebaseFirestore.getInstance();
@@ -36,6 +39,16 @@ public class CreateClassActivity extends FullScreen {
         class_id = findViewById(R.id.classID);
         classname = findViewById(R.id.className);
         mAuth = FirebaseAuth.getInstance();
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CreateClassActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","createclass");
+                startActivity(intent);
+            }
+        });
 
         create.setOnClickListener(v -> {
             class_id_as_string = class_id.getText().toString();

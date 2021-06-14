@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ import java.util.Random;
 
 public class TestActivity extends FullScreen {
     final int zeroID = R.drawable.zero, oneID = R.drawable.one, twoID = R.drawable.two, threeID = R.drawable.three, fourID = R.drawable.four, fiveID = R.drawable.five, sixID = R.drawable.six, sevenID = R.drawable.seven, eightID = R.drawable.eight, nineID = R.drawable.nine;
-    ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2, page3, page4, page5, page6, page7, page8, page9;
+    ImageView num1, num2, num3, num4, num5, num6, result1_num1, result1_num2, result2_num1, result2_num2, result3_num1, result3_num2, next, page1, page2, page3, page4, page5, page6, page7, page8, page9, btn_help;
     Button true1, true2, true3, false1, false2, false3;
     boolean bTrue1 = false, bTrue2 = false, bTrue3 = false, bFalse1 = false, bFalse2 = false, bFalse3 = false;
     int random, random2, rUnit, rUnit2, id, mul, curPage;
@@ -51,6 +52,16 @@ public class TestActivity extends FullScreen {
         setContentView(R.layout.activity_test);
 
         mAuth = FirebaseAuth.getInstance();
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TestActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","test");
+                startActivity(intent);
+            }
+        });
 
         result1_num1 = findViewById(R.id.result1_num1);
         result1_num2 = findViewById(R.id.result1_num2);

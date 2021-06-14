@@ -16,6 +16,7 @@
     <color name="white_blue">#F7F8F9</color>
     <color name="text_color">#425969</color>
     <color name="green">#4DBAA2</color>
+    <color name="red">#D21402</color>
     <color name="orange">#F9C359</color>
     <color name="blue">#0055FF</color>
 </resources>

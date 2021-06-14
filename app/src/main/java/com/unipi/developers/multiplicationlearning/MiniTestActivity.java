@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,7 +28,7 @@ import java.util.Objects;
 
 public class MiniTestActivity extends FullScreen {
     final int zeroID = R.drawable.zero, oneID = R.drawable.one, twoID = R.drawable.two, threeID = R.drawable.three, fourID = R.drawable.four, fiveID = R.drawable.five, sixID = R.drawable.six, sevenID = R.drawable.seven, eightID = R.drawable.eight, nineID = R.drawable.nine;
-    ImageView num1, num2, num3, num4, num5, num6, num7, num8, num9, num10, next;
+    ImageView num1, num2, num3, num4, num5, num6, num7, num8, num9, num10, next, btn_help;
     EditText result1, result2, result3, result4, result5, result6, result7, result8, result9, result10;
     int number, id, from;
     ArrayList<Integer> results = new ArrayList<>();
@@ -53,6 +54,16 @@ public class MiniTestActivity extends FullScreen {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         db.setFirestoreSettings(settings);
+
+        btn_help = findViewById(R.id.btn_help_mini);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MiniTestActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","minitest");
+                startActivity(intent);
+            }
+        });
 
         result1 = findViewById(R.id.result1_mini);
         result2 = findViewById(R.id.result2_mini);

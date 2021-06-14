@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +34,8 @@ public class SignUpStudentActivity extends FullScreen {
     FirebaseFirestore db_auth = FirebaseFirestore.getInstance();
     ArrayList<String> classes;
     TextView txt_create_account;
+    AppCompatButton btn_signup;
+    ImageView btn_help;
 
 
     @Override
@@ -48,6 +52,23 @@ public class SignUpStudentActivity extends FullScreen {
         txt_create_account=findViewById(R.id.txt_create_account);
         txt_create_account.setOnClickListener(v -> startActivity(new Intent(this,LogInActivity.class)));
 
+        btn_signup = findViewById(R.id.btn_signupstudent);
+        btn_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sign_up_students();
+            }
+        });
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpStudentActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","signupstudent");
+                startActivity(intent);
+            }
+        });
 
         db_exists.collection("classes")
                 .document("kXJy56RB69Jewvnh23Pf")
@@ -72,7 +93,7 @@ public class SignUpStudentActivity extends FullScreen {
         }
     }
 
-    public void sign_up_students(View view) {
+    public void sign_up_students() {
         try {
             if (!classes.contains(class_id.getSelectedItem().toString())) {
                 Toast.makeText(context, getString(R.string.class_does_not_exist), Toast.LENGTH_LONG).show();

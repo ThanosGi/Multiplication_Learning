@@ -15,7 +15,7 @@ public class TheoryActivity extends FullScreen {
     CustomScrollView scrollView;
     RelativeLayout relativeLayout;
     ImageView clear1, clear2, clear3, clear4, clear5, clear6, clear7, clear8, clear9, next;
-    ImageView img_num1, img_num2, img_num3, img_num4, img_num5, img_num6, img_num7, img_num8, img_num9;
+    ImageView img_num1, img_num2, img_num3, img_num4, img_num5, img_num6, img_num7, img_num8, img_num9, btn_help;
     ImageView img_res1_1, img_res2_1, img_res2_2, img_res3_1, img_res3_2, img_res4_1, img_res4_2, img_res5_1, img_res5_2, img_res6_1, img_res6_2, img_res7_1, img_res7_2, img_res8_1, img_res8_2, img_res9_1, img_res9_2;
     MyCanvas canvas1, canvas2, canvas3, canvas4, canvas5, canvas6, canvas7, canvas8, canvas9;
     AppCompatButton btn_seeVideo;
@@ -30,6 +30,15 @@ public class TheoryActivity extends FullScreen {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_theory);
 
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TheoryActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","theory");
+                startActivity(intent);
+            }
+        });
 
         lesson_number = getIntent().getIntExtra("lesson_number", 10);
 

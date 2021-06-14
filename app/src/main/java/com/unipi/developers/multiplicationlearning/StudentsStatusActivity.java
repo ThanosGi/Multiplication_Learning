@@ -1,7 +1,10 @@
 package com.unipi.developers.multiplicationlearning;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,11 +48,22 @@ public class StudentsStatusActivity extends FullScreen {
     AppCompatButton btn_prev, btn_next;
     int zero_lesson, one_lesson, two_lesson, three_lesson, four_lesson, five_lesson, six_lesson, seven_lesson, eight_lesson, nine_lesson, review1, review2, review3, final_review;
     String json_data;
+    ImageView btn_help;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_status);
+
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentsStatusActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","stats");
+                startActivity(intent);
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
         barChart = findViewById(R.id.barChart);

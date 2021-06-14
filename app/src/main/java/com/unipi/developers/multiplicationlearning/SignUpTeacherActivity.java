@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,6 +27,8 @@ public class SignUpTeacherActivity extends FullScreen {
     EditText password;
     EditText password2;
     TextView txt_create_account;
+    AppCompatButton btn_signupteacher;
+    ImageView btn_help;
 
     Context context = this;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -41,6 +45,22 @@ public class SignUpTeacherActivity extends FullScreen {
         password2 = findViewById(R.id.et_password2);
         txt_create_account=findViewById(R.id.txt_create_account);
         txt_create_account.setOnClickListener(v -> startActivity(new Intent(this,LogInActivity.class)));
+        btn_signupteacher = findViewById(R.id.btn_signupteacher);
+        btn_signupteacher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sign_up_teacher();
+            }
+        });
+        btn_help = findViewById(R.id.btn_help);
+        btn_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpTeacherActivity.this,PdfViewerActivity.class);
+                intent.putExtra("fromActivity","singupteacher");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -51,7 +71,7 @@ public class SignUpTeacherActivity extends FullScreen {
         }
     }
 
-    public void sign_up_teacher(View view) {
+    public void sign_up_teacher() {
         try {
             if (password.getText().toString().equals(password2.getText().toString())) {
                 mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())

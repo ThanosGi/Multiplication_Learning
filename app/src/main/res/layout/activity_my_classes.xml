@@ -1,43 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyClassesActivity">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
+    <ImageView
+        android:id="@+id/btn_help"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_help"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="20dp"/>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_margin="40dp">
+        android:layout_below="@+id/btn_help"
+        android:layout_marginTop="10dp">
 
-        <!-- Table Heading-->
-        <TableRow
-            android:background="@color/green">
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/class_name"
-                android:textColor="@color/white"
-                android:padding="10sp"
-                android:textSize="24sp"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"/>
+            <!-- Table Heading-->
+            <TableRow
+                android:background="@color/green">
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/class_id"
-                android:textColor="@color/white"
-                android:padding="10sp"
-                android:textSize="24sp"
-                android:layout_weight="4"
-                android:gravity="center_horizontal"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_name"
+                    android:textColor="@color/white"
+                    android:padding="10sp"
+                    android:textSize="24sp"
+                    android:layout_weight="4"
+                    android:gravity="center_horizontal"/>
 
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/class_id"
+                    android:textColor="@color/white"
+                    android:padding="10sp"
+                    android:textSize="24sp"
+                    android:layout_weight="4"
+                    android:gravity="center_horizontal"/>
 
-</ScrollView>
+            </TableRow>
+        </TableLayout>
+
+    </ScrollView>
+</RelativeLayout>
